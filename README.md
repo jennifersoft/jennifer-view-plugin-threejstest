@@ -1,6 +1,6 @@
 ## Getting started
 
-First, add the file 'jennifer.extension-1.0.2.jar' in the 'lib' directory to your local maven repository.
+First, add the file 'jennifer.extension-1.0.2.jar' in the 'lib' directory to your local maven repository.<br>
 Enter the command as follows.
 
  1. git clone https://github.com/jennifersoft/jennifer-view-plugin-threejstest.git 
