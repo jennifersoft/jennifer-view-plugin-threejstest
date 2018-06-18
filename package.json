@@ -1,0 +1,28 @@
+{
+  "name": "aries-threejs",
+  "version": "1.0.0",
+  "scripts": {
+    "watch": "webpack --watch",
+    "front": "npm run watch & webpack-dev-server",
+    "server": "java -jar ./dist/lisa_threejs-0.0.1.jar",
+    "start": "npm run front"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.4",
+    "babel-preset-es2015": "^6.24.1",
+    "css-loader": "^0.28.11",
+    "extract-text-webpack-plugin": "^3.0.2",
+    "html-webpack-plugin": "^3.2.0",
+    "postcss": "^6.0.22",
+    "postcss-loader": "^2.1.5",
+    "postcss-scss": "^1.0.5",
+    "style-loader": "^0.21.0",
+    "url-loader": "^1.0.1",
+    "webpack": "^3.12.0",
+    "webpack-dev-server": "^2.11.2"
+  },
+  "dependencies": {
+    "three": "^0.93.0"
+  }
+}

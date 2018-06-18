@@ -1,0 +1,4 @@
+<div id="threejs-main">
+    <h1>WebGL Test <span>${test}</span></h1>
+    <div id="WebGL-output"></div>
+</div>
