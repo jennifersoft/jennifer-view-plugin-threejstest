@@ -29,33 +29,19 @@
 	</properties>
 
 	<dependencies>
+		<!-- 필수 라이브러리 -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-
-		<!-- TODO: 로컬 메이븐 저장소에 추가되어 있어야 함 (차후 온라인에 공개할 예정) -->
 		<dependency>
 			<groupId>com.aries</groupId>
 			<artifactId>extension</artifactId>
 			<version>1.0.2</version>
 		</dependency>
-		<dependency>
-			<groupId>org.apache.derby</groupId>
-			<artifactId>derbyclient</artifactId>
-			<version>10.12.1.1</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.commons</groupId>
-			<artifactId>commons-pool2</artifactId>
-			<version>2.3</version>
-		</dependency>
-		<dependency>
-			<groupId>commons-dbcp</groupId>
-			<artifactId>commons-dbcp</artifactId>
-			<version>1.4</version>
-		</dependency>
+
+		<!-- TODO: 사용자가 필요한 라이브러리 추가하는 영역 -->
 	</dependencies>
 
 	<profiles>
@@ -116,28 +102,28 @@
 							<artifactSet>
 								<excludes>
 									<exclude>com.aries:extension</exclude>
-									<exclude>org.springframework:*</exclude>
 									<exclude>javax.servlet:*</exclude>
+									<exclude>javax.xml.stream:*</exclude>
+									<exclude>org.springframework:*</exclude>
 									<exclude>org.apache.velocity:*</exclude>
 									<exclude>org.apache.commons:*</exclude>
 									<exclude>org.slf4j:*</exclude>
 									<exclude>org.json:*</exclude>
-									<exclude>com.fasterxml.jackson.core:*</exclude>
-									<exclude>javax.xml.stream:*</exclude>
-									<exclude>com.thoughtworks.xstream:*</exclude>
-									<exclude>httpunit:*</exclude>
-									<exclude>rhino:*</exclude>
-									<exclude>commons-fileupload:*</exclude>
-									<exclude>commons-codec:*</exclude>
 									<exclude>org.reflections:*</exclude>
+									<exclude>org.quartz-scheduler:*</exclude>
+									<exclude>com.fasterxml.jackson.core:*</exclude>
+									<exclude>com.thoughtworks.xstream:*</exclude>
+									<exclude>com.google.code.gson:*</exclude>
 									<exclude>com.google.guava:*</exclude>
 									<exclude>com.google.http-client:*</exclude>
-									<exclude>gdata:*</exclude>
-									<exclude>com.google.code.gson:*</exclude>
-									<exclude>whois:*</exclude>
 									<exclude>com.navercorp.lucy:*</exclude>
-									<exclude>org.quartz-scheduler:*</exclude>
+									<exclude>commons-fileupload:*</exclude>
+									<exclude>commons-codec:*</exclude>
 									<exclude>io.jsonwebtoken:*</exclude>
+									<exclude>httpunit:*</exclude>
+									<exclude>rhino:*</exclude>
+									<exclude>gdata:*</exclude>
+									<exclude>whois:*</exclude>
 								</excludes>
 							</artifactSet>
 							<outputFile>${plugin.output.directoryName}/${plugin.output.fileName}.${project.packaging}</outputFile>
@@ -155,4 +141,15 @@
 			</build>
 		</profile>
 	</profiles>
+
+	<repositories>
+		<repository>
+			<id>central</id>
+			<url>http://support.jennifersoft.com:8081/nexus/content/groups/public</url>
+		</repository>
+		<repository>
+			<id>mvnrepository</id>
+			<url>http://repo1.maven.org/maven2</url>
+		</repository>
+	</repositories>
 </project>

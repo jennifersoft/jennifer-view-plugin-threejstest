@@ -50,7 +50,7 @@ function init() {
 
     // create a sphere
     var sphereGeometry = new SphereGeometry(4, 20, 20);
-    var sphereMaterial = new MeshBasicMaterial({color: 0xefefef, wireframe: true});
+    var sphereMaterial = new MeshBasicMaterial({color: 0x010101, wireframe: true});
     var sphere = new Mesh(sphereGeometry, sphereMaterial);
 
     // position the sphere

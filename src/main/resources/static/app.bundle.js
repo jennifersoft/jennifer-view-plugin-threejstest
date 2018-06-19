@@ -47031,7 +47031,7 @@ function init() {
 
     // create a sphere
     var sphereGeometry = new __WEBPACK_IMPORTED_MODULE_0_three__["i" /* SphereGeometry */](4, 20, 20);
-    var sphereMaterial = new __WEBPACK_IMPORTED_MODULE_0_three__["e" /* MeshBasicMaterial */]({ color: 0xefefef, wireframe: true });
+    var sphereMaterial = new __WEBPACK_IMPORTED_MODULE_0_three__["e" /* MeshBasicMaterial */]({ color: 0x010101, wireframe: true });
     var sphere = new __WEBPACK_IMPORTED_MODULE_0_three__["d" /* Mesh */](sphereGeometry, sphereMaterial);
 
     // position the sphere
