@@ -10,3 +10,5 @@ Enter the command as follows.
  6. npm start
  
  If you modify the js or scss file in the 'src/main/resources/static/*' directory, it will be automatically bundled.
+ 
+ The following URL : http://localhost:3000/plugin/threejs
