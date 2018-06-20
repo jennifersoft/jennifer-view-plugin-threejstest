@@ -5,7 +5,7 @@
 
 	<groupId>com.aries</groupId>
 	<artifactId>threejs</artifactId>
-	<version>0.0.1</version>
+	<version>0.0.2</version>
 	<packaging>jar</packaging>
 
 	<name>threejs</name>
@@ -36,7 +36,7 @@
 		<dependency>
 			<groupId>com.aries</groupId>
 			<artifactId>extension</artifactId>
-			<version>1.0.2</version>
+			<version>1.0.3</version>
 		</dependency>
 	</dependencies>
 

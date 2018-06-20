@@ -1,6 +1,7 @@
 require('../style/index.scss')
 require('../style/sub.scss')
 
+import $ from 'jquery';
 import {Scene, PerspectiveCamera, WebGLRenderer, BoxGeometry, MeshBasicMaterial, Mesh, Color, AxisHelper, PlaneGeometry, SphereGeometry} from 'three';
 
 // once everything is loaded, we run our Three.js stuff.
@@ -72,6 +73,14 @@ function init() {
 
     // render the scene
     renderer.render(scene, camera);
+
+    // window resizing
+    $(window).on("resize", function(e) {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+
+        renderer.setSize( window.innerWidth, window.innerHeight );
+    });
 }
 
 $(function() {
