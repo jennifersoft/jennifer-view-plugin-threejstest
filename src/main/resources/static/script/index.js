@@ -24,7 +24,7 @@ function init() {
 
     // create the ground plane
     var planeGeometry = new PlaneGeometry(60, 20);
-    var planeMaterial = new MeshBasicMaterial({color: 0xcccccc});
+    var planeMaterial = new MeshBasicMaterial({color: 0xdedede});
     var plane = new Mesh(planeGeometry, planeMaterial);
 
     // rotate and position the plane

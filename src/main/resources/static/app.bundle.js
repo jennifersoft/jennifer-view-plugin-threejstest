@@ -57379,7 +57379,7 @@ function init() {
 
     // create the ground plane
     var planeGeometry = new __WEBPACK_IMPORTED_MODULE_1_three__["g" /* PlaneGeometry */](60, 20);
-    var planeMaterial = new __WEBPACK_IMPORTED_MODULE_1_three__["e" /* MeshBasicMaterial */]({ color: 0xcccccc });
+    var planeMaterial = new __WEBPACK_IMPORTED_MODULE_1_three__["e" /* MeshBasicMaterial */]({ color: 0xdedede });
     var plane = new __WEBPACK_IMPORTED_MODULE_1_three__["d" /* Mesh */](planeGeometry, planeMaterial);
 
     // rotate and position the plane

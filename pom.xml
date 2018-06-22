@@ -36,7 +36,7 @@
 		<dependency>
 			<groupId>com.aries</groupId>
 			<artifactId>extension</artifactId>
-			<version>1.0.3</version>
+			<version>1.0.5</version>
 		</dependency>
 	</dependencies>
 
@@ -107,7 +107,7 @@
 						<configuration>
 							<artifactSet>
 								<excludes>
-									<exclude>com.aries:extension</exclude>
+									<exclude>com.aries:extension:*</exclude>
 									<exclude>javax.servlet:*</exclude>
 									<exclude>javax.xml.stream:*</exclude>
 									<exclude>org.springframework:*</exclude>

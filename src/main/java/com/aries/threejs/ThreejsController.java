@@ -1,6 +1,8 @@
 package com.aries.threejs;
 
 import com.aries.extension.starter.PluginController;
+import com.aries.extension.util.ConfigUtil;
+import com.aries.extension.util.PropertyUtil;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -14,7 +16,8 @@ public class ThreejsController extends PluginController {
     public ModelAndView getThreejsMainPage()
     {
         ModelAndView mav = new ModelAndView();
-        mav.addObject("test","자바에서 넘긴 데이터");
+        mav.addObject("property", PropertyUtil.getValue("threejs", "message", "스프링부트"));
+        mav.addObject("config", ConfigUtil.getValue("sherpaoracle_server_url", "http://셀파오라클"));
         return mav;
     }
 }
