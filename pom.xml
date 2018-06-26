@@ -5,16 +5,15 @@
 
 	<groupId>com.aries</groupId>
 	<artifactId>threejs</artifactId>
-	<version>0.0.2</version>
+	<version>0.0.3</version>
 	<packaging>jar</packaging>
 
-	<name>threejs</name>
-	<description>Demo project for Spring Boot</description>
+	<name>Tutorial</name>
+	<description>Plugin Tutorial</description>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		<java.version>1.8</java.version>
 
 		<!-- TODO: 플러그인 jar 파일 생성 디렉토리 및 파일 네이밍 설정 -->
 		<plugin.output.directoryName>${project.basedir}/dist</plugin.output.directoryName>
@@ -36,7 +35,7 @@
 		<dependency>
 			<groupId>com.aries</groupId>
 			<artifactId>extension</artifactId>
-			<version>1.0.5</version>
+			<version>1.0.6</version>
 		</dependency>
 	</dependencies>
 
@@ -104,6 +103,7 @@
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-shade-plugin</artifactId>
+						<version>3.1.1</version>
 						<configuration>
 							<artifactSet>
 								<excludes>
