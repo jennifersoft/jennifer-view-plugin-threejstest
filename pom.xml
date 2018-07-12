@@ -15,7 +15,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
-		<!-- TODO: 플러그인 jar 파일 생성 디렉토리 및 파일 네이밍 설정 -->
+		<!-- 플러그인 jar 파일 생성 디렉토리 및 파일 네이밍 설정 -->
 		<plugin.output.directoryName>${project.basedir}/dist</plugin.output.directoryName>
 		<plugin.output.fileName>${project.artifactId}_${env}-${project.version}</plugin.output.fileName>
 	</properties>
@@ -31,7 +31,23 @@
 	<dependencies>
 		<!-- TODO: 사용자가 필요한 라이브러리 추가하는 영역 -->
 
-		<!-- TODO: 제니퍼 플러그인을 구현하기 위한 필수 라이브러리 -->
+		<!-- 제니퍼 플러그인을 구현하기 위한 필수 라이브러리 -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+			<scope>provided</scope>
+			<optional>true</optional>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
 		<dependency>
 			<groupId>com.aries</groupId>
 			<artifactId>extension</artifactId>
@@ -49,17 +65,6 @@
 			<activation>
 				<activeByDefault>true</activeByDefault>
 			</activation>
-			<dependencies>
-				<dependency>
-					<groupId>org.springframework.boot</groupId>
-					<artifactId>spring-boot-starter-web</artifactId>
-				</dependency>
-				<dependency>
-					<groupId>org.springframework.boot</groupId>
-					<artifactId>spring-boot-starter-test</artifactId>
-					<scope>test</scope>
-				</dependency>
-			</dependencies>
 			<build>
 				<plugins>
 					<plugin>
@@ -86,18 +91,6 @@
 			<properties>
 				<env>jennifer</env>
 			</properties>
-			<dependencies>
-				<dependency>
-					<groupId>org.springframework.boot</groupId>
-					<artifactId>spring-boot-starter-web</artifactId>
-					<scope>provided</scope>
-				</dependency>
-				<dependency>
-					<groupId>org.springframework.boot</groupId>
-					<artifactId>spring-boot-starter-test</artifactId>
-					<scope>test</scope>
-				</dependency>
-			</dependencies>
 			<build>
 				<plugins>
 					<plugin>
@@ -107,29 +100,10 @@
 						<configuration>
 							<artifactSet>
 								<excludes>
+									<exclude>org.slf4j:*</exclude>
 									<exclude>com.aries:extension:*</exclude>
-									<exclude>javax.servlet:*</exclude>
-									<exclude>javax.xml.stream:*</exclude>
-									<exclude>org.springframework:*</exclude>
 									<exclude>org.apache.velocity:*</exclude>
 									<exclude>org.apache.commons:*</exclude>
-									<exclude>org.slf4j:*</exclude>
-									<exclude>org.json:*</exclude>
-									<exclude>org.reflections:*</exclude>
-									<exclude>org.quartz-scheduler:*</exclude>
-									<exclude>com.fasterxml.jackson.core:*</exclude>
-									<exclude>com.thoughtworks.xstream:*</exclude>
-									<exclude>com.google.code.gson:*</exclude>
-									<exclude>com.google.guava:*</exclude>
-									<exclude>com.google.http-client:*</exclude>
-									<exclude>com.navercorp.lucy:*</exclude>
-									<exclude>commons-fileupload:*</exclude>
-									<exclude>commons-codec:*</exclude>
-									<exclude>io.jsonwebtoken:*</exclude>
-									<exclude>httpunit:*</exclude>
-									<exclude>rhino:*</exclude>
-									<exclude>gdata:*</exclude>
-									<exclude>whois:*</exclude>
 								</excludes>
 							</artifactSet>
 							<outputFile>${plugin.output.directoryName}/${plugin.output.fileName}.${project.packaging}</outputFile>

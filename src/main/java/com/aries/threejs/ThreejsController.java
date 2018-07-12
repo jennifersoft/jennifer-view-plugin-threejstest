@@ -16,8 +16,8 @@ public class ThreejsController extends PluginController {
     public ModelAndView getThreejsMainPage()
     {
         ModelAndView mav = new ModelAndView();
-        mav.addObject("property", PropertyUtil.getValue("threejs", "message", "스프링부트"));
-        mav.addObject("config", ConfigUtil.getValue("sherpaoracle_server_url", "http://셀파오라클"));
+        mav.addObject("property", PropertyUtil.getValue("threejs", "message", "핫로딩 테스트!!!!!!"));
+        mav.addObject("config", ConfigUtil.getValue("sherpaoracle_server_url", "http://셀파오라클!!"));
         return mav;
     }
 }
