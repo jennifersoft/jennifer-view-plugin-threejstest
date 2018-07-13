@@ -108,8 +108,8 @@ $(function() {
             //			metrics: MxDef.active_service,
             ptype: PTypeDef.MISC,
             pkey: "active_service",
-            domainId: 7000,
-            instanceOids: [ 72541, 72547, 72577 ]
+            domainId: 7908,
+            instanceOids: [ 95539 ]
         });
     }
 });
