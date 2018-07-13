@@ -5,7 +5,7 @@
 
 #threejs-main h1 {
   color: purple;
-}#threejs-main span {
+}#threejs-main span.label {
   color: blue !important;
   font-size: 15px;
 }

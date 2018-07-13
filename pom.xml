@@ -51,7 +51,7 @@
 		<dependency>
 			<groupId>com.aries</groupId>
 			<artifactId>extension</artifactId>
-			<version>1.0.7</version>
+			<version>1.0.8</version>
 		</dependency>
 	</dependencies>
 
@@ -85,7 +85,7 @@
 				</plugins>
 			</build>
 		</profile>
-		<!-- 제니퍼에 실험실로 추가할 수 있는 jar 파일 -->
+		<!-- 제니퍼에 실험실로 추가할 수 있는 jar 파일 (제니퍼 뷰서버에서 사용하는 라이브러리는 모두 제외) -->
 		<profile>
 			<id>jennifer</id>
 			<properties>
@@ -104,6 +104,27 @@
 									<exclude>com.aries:extension:*</exclude>
 									<exclude>org.apache.velocity:*</exclude>
 									<exclude>org.apache.commons:*</exclude>
+                                    <exclude>javax.servlet:*</exclude>
+                                    <exclude>javax.xml.stream:*</exclude>
+                                    <exclude>org.springframework:*</exclude>
+                                    <exclude>org.apache.velocity:*</exclude>
+                                    <exclude>org.apache.commons:*</exclude>
+                                    <exclude>org.json:*</exclude>
+                                    <exclude>org.reflections:*</exclude>
+                                    <exclude>org.quartz-scheduler:*</exclude>
+                                    <exclude>com.fasterxml.jackson.core:*</exclude>
+                                    <exclude>com.thoughtworks.xstream:*</exclude>
+                                    <exclude>com.google.code.gson:*</exclude>
+                                    <exclude>com.google.guava:*</exclude>
+                                    <exclude>com.google.http-client:*</exclude>
+                                    <exclude>com.navercorp.lucy:*</exclude>
+                                    <exclude>commons-fileupload:*</exclude>
+                                    <exclude>commons-codec:*</exclude>
+                                    <exclude>io.jsonwebtoken:*</exclude>
+                                    <exclude>httpunit:*</exclude>
+                                    <exclude>rhino:*</exclude>
+                                    <exclude>gdata:*</exclude>
+                                    <exclude>io.jsonwebtoken:*</exclude>
 								</excludes>
 							</artifactSet>
 							<outputFile>${plugin.output.directoryName}/${plugin.output.fileName}.${project.packaging}</outputFile>

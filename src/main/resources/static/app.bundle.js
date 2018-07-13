@@ -57451,6 +57451,22 @@ __WEBPACK_IMPORTED_MODULE_0_jquery___default()(function () {
     });
     // aries.extension.popup("xview", { domainId: 3000, txIds: ["7068317079266947005","-1568083474888856788","-887163633174791787","8535743776935114500","7155110854784412808","-608172379644698461","-7465411390566347486","4222697659398975915","-700281156862227495","7840841052210698079","-631215189873187695","-4749696442599266903","3330619558382445254","-4979300088052542770","3202756107435607645","-4584654810877070146"], startTime: 1531277605095, endTime: 1531277734128 });
     //aries.extension.popup("activeService", { domainId: 3000, hostName: "http://support.jennifersoft.com:27900" });
+
+    if (jui) {
+        var builder = jui.include("aries.chart.builder");
+
+        builder("#chart", {
+            title: "액티브서비스",
+            width: 300,
+            height: 300,
+            chartType: "equalizer",
+            //			metrics: MxDef.active_service,
+            ptype: PTypeDef.MISC,
+            pkey: "active_service",
+            domainId: 7000,
+            instanceOids: [72541, 72547, 72577]
+        });
+    }
 });
 
 /***/ }),

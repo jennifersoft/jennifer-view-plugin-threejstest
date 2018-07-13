@@ -1,4 +1,5 @@
 <div id="threejs-main">
-    <h1>WebGL Test <span>${property} / ${config}</span></h1>
+    <h1>WebGL Test <span class="label">${property} / ${config}</span></h1>
+    <div id="chart"></div>
     <div id="WebGL-output"></div>
 </div>
