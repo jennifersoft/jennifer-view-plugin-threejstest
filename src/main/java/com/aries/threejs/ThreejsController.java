@@ -3,7 +3,6 @@ package com.aries.threejs;
 import com.aries.extension.starter.PluginController;
 import com.aries.extension.util.ConfigUtil;
 import com.aries.extension.util.PropertyUtil;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -13,16 +12,13 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class ThreejsController extends PluginController {
 
-    @Value("${spring.test.name}")
-    private String testName;
-
     @RequestMapping(value = { "/threejs" }, method = RequestMethod.GET)
     @ResponseBody
     public ModelAndView getThreejsMainPage()
     {
         ModelAndView mav = new ModelAndView();
-        mav.addObject("property", PropertyUtil.getValue("threejs", "message", testName));
-        mav.addObject("config", ConfigUtil.getValue("sherpaoracle_server_url", "http://셀파오라클!!"));
+        mav.addObject("property", PropertyUtil.getValue("threejs", "message", "property 22"));
+        mav.addObject("config", ConfigUtil.getValue("sherpaoracle_server_url", "http://sherpaoracle"));
         return mav;
     }
 }
