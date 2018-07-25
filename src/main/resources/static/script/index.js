@@ -88,7 +88,7 @@ $(function() {
 
     aries.extension.setup({
         hostName: "http://127.0.0.1:7900",
-        apiToken: "Qe94XHBwsmQ"
+        apiToken: "IJda8l4wwqr"
     });
 
     aries.extension.api("instance", { domain_id: 7908 }, function(res) {
@@ -100,10 +100,10 @@ $(function() {
     if(jui) {
         var builder = jui.include("aries.chart.builder");
 
-        builder("#chart", {
-            title: "액티브서비스",
-            width: 300,
-            height: 300,
+        builder("#JENNIFER-output", {
+            title: "Active Service",
+            width: "100%",
+            height: $("#WebGL-output").height(),
             chartType: "equalizer",
             //			metrics: MxDef.active_service,
             ptype: PTypeDef.MISC,

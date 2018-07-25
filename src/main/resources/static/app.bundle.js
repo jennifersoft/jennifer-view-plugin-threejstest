@@ -57443,7 +57443,7 @@ __WEBPACK_IMPORTED_MODULE_0_jquery___default()(function () {
 
     aries.extension.setup({
         hostName: "http://127.0.0.1:7900",
-        apiToken: "Qe94XHBwsmQ"
+        apiToken: "IJda8l4wwqr"
     });
 
     aries.extension.api("instance", { domain_id: 7908 }, function (res) {
@@ -57455,16 +57455,16 @@ __WEBPACK_IMPORTED_MODULE_0_jquery___default()(function () {
     if (jui) {
         var builder = jui.include("aries.chart.builder");
 
-        builder("#chart", {
-            title: "액티브서비스",
-            width: 300,
-            height: 300,
+        builder("#JENNIFER-output", {
+            title: "Active Service",
+            width: "100%",
+            height: __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#WebGL-output").height(),
             chartType: "equalizer",
             //			metrics: MxDef.active_service,
             ptype: PTypeDef.MISC,
             pkey: "active_service",
-            domainId: 7000,
-            instanceOids: [72541, 72547, 72577]
+            domainId: 7908,
+            instanceOids: [95539]
         });
     }
 });
