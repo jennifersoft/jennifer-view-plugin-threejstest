@@ -1,0 +1,5 @@
+<div id="threejs-main">
+    <div class="row" title="${property} / ${config}">
+        <div class="col col-12"><div id="WebGL-output"></div></div>
+    </div>
+</div>
