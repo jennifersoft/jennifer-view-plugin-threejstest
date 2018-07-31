@@ -1,14 +1,32 @@
-const webpack = require('webpack')
 const path = require('path')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const staticPath = path.resolve(__dirname, 'src/main/resources/static')
 
 module.exports = {
+    mode: 'development',
     context: staticPath,
-    entry: staticPath + '/script/index.js',
+    entry: {
+        vendors: [ 'three', 'jquery' ],
+        app: staticPath + '/script/index.js'
+    },
     output: {
         path: staticPath,
-        filename: 'app.bundle.js'
+        filename: '[name].js',
+    },
+    optimization: {
+        namedModules: true,
+        runtimeChunk: 'single',
+        splitChunks: {
+            chunks: 'all',
+            cacheGroups: {
+                vendors: {
+                    test: /[\\/]node_modules[\\/]/,
+                    name: 'vendors',
+                    enforce: true,
+                    chunks: 'all'
+                }
+            }
+        }
     },
     module: {
         rules: [{
@@ -73,7 +91,8 @@ module.exports = {
         }
     },
     plugins: [
-        new ExtractTextPlugin({ filename: 'app.bundle.css' }),
-        new webpack.NamedModulesPlugin()
+        new ExtractTextPlugin({
+            filename: '[name].css'
+        })
     ]
 }

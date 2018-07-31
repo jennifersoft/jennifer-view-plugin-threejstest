@@ -51,7 +51,7 @@
 		<dependency>
 			<groupId>com.aries</groupId>
 			<artifactId>extension</artifactId>
-			<version>1.0.11</version>
+			<version>1.0.12</version>
 		</dependency>
 	</dependencies>
 
@@ -124,7 +124,6 @@
                                     <exclude>httpunit:*</exclude>
                                     <exclude>rhino:*</exclude>
                                     <exclude>gdata:*</exclude>
-                                    <exclude>io.jsonwebtoken:*</exclude>
 								</excludes>
 							</artifactSet>
 							<outputFile>${plugin.output.directoryName}/${plugin.output.fileName}.${project.packaging}</outputFile>
