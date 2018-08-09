@@ -1,6 +1,6 @@
-require('../style/index.scss')
-require('../style/sub.scss')
-
+import MainStyles from './styles/main.scss'
+import SubStyles from './styles/sub.scss'
+import $ from 'jquery'
 import {Scene, PerspectiveCamera, WebGLRenderer, BoxGeometry, MeshBasicMaterial, Mesh, Color, AxisHelper, PlaneGeometry, SphereGeometry} from 'three';
 
 // once everything is loaded, we run our Three.js stuff.
