@@ -58,14 +58,6 @@ module.exports = (env) => {
         },
         module: {
             rules: [{
-                enforce: "pre",
-                test: /\.js$/,
-                loader: "source-map-loader"
-            }, {
-                enforce: 'pre',
-                test: /\.ts$/,
-                loader: 'tslint-loader'
-            }, {
                 test: /\.js$/,
                 use: [{
                     loader: 'babel-loader',
@@ -75,9 +67,6 @@ module.exports = (env) => {
                         ]
                     }
                 }]
-            }, {
-                test: /\.ts$/,
-                use: 'awesome-typescript-loader'
             }, {
                 test: /\.(jpe?g|png|gif|svg)$/i,
                 use: [{
@@ -108,9 +97,6 @@ module.exports = (env) => {
                     }
                 ]
             }]
-        },
-        resolve: {
-            extensions: [ ".ts", ".js", ".json", "scss" ]
         },
         devServer: {
             hot: false,

@@ -3,7 +3,6 @@ import SubStyles from './styles/sub.scss'
 
 import $ from 'jquery'
 import {Scene, PerspectiveCamera, WebGLRenderer, BoxGeometry, MeshBasicMaterial, Mesh, Color, AxisHelper, PlaneGeometry, SphereGeometry} from 'three';
-import test from './ts/index.ts'
 
 // once everything is loaded, we run our Three.js stuff.
 function init() {
