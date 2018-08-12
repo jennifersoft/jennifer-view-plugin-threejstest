@@ -2,12 +2,14 @@
   "name": "tutorial",
   "version": "1.0.0",
   "scripts": {
+    "test": "jest",
     "server": "java -jar ./dist/threejs_local-0.0.5.jar",
     "dist": "webpack --env=production",
     "client": "webpack --watch & webpack-dev-server --env=development",
     "start": "npm run client"
   },
   "devDependencies": {
+    "awesome-typescript-loader": "^5.2.0",
     "babel-core": "^6.26.3",
     "babel-loader": "^7.1.5",
     "babel-preset-es2015": "^6.24.1",
@@ -20,10 +22,13 @@
     "postcss-loader": "^2.1.6",
     "postcss-scss": "^1.0.5",
     "sass-loader": "^7.1.0",
+    "source-map-loader": "^0.2.3",
     "style-loader": "^0.21.0",
+    "tslint": "^5.11.0",
+    "tslint-loader": "^3.6.0",
+    "typescript": "^3.0.1",
     "url-loader": "^1.0.1",
     "webpack": "^4.16.5",
-    "webpack-bundle-analyzer": "^2.13.1",
     "webpack-cli": "^3.1.0",
     "webpack-dev-server": "^3.1.5"
   },

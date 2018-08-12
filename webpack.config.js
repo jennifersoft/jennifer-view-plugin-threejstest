@@ -1,7 +1,6 @@
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 let path = require('path')
 let clientPath = path.resolve(__dirname, 'src/main/client')
@@ -59,6 +58,14 @@ module.exports = (env) => {
         },
         module: {
             rules: [{
+                enforce: "pre",
+                test: /\.js$/,
+                loader: "source-map-loader"
+            }, {
+                enforce: 'pre',
+                test: /\.ts$/,
+                loader: 'tslint-loader'
+            }, {
                 test: /\.js$/,
                 use: [{
                     loader: 'babel-loader',
@@ -68,6 +75,9 @@ module.exports = (env) => {
                         ]
                     }
                 }]
+            }, {
+                test: /\.ts$/,
+                use: 'awesome-typescript-loader'
             }, {
                 test: /\.(jpe?g|png|gif|svg)$/i,
                 use: [{
@@ -99,6 +109,9 @@ module.exports = (env) => {
                 ]
             }]
         },
+        resolve: {
+            extensions: [ ".ts", ".js", ".json", "scss" ]
+        },
         devServer: {
             hot: false,
             inline: true,
@@ -116,8 +129,7 @@ module.exports = (env) => {
             new MiniCssExtractPlugin({
                 path: outputPath,
                 filename: '[name].css'
-            }),
-            new BundleAnalyzerPlugin()
+            })
         ]
     }
 }
