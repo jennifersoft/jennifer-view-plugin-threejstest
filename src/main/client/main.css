@@ -1,0 +1,27 @@
+#tutorial-main {
+    margin: 0px;
+    padding: 0px;
+    overflow: hidden;
+}
+
+#tutorial-main h1 {
+    color: purple;
+}
+
+#tutorial-main .title {
+    position: relative;
+}
+
+#tutorial-main .title > i {
+    width: 24px;
+    height: 24px;
+    display: inline-block;
+    background-image: url("images/logo.svg")
+}
+
+#tutorial-main .title > span {
+    position: absolute;
+    font-size: 14px;
+    left: 30px;
+    top: 5px;
+}

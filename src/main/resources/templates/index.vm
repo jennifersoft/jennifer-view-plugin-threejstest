@@ -1,6 +1,0 @@
-<div id="threejs-main">
-    <div class="row" title="${property} / ${config}">
-        <div class="col col-4"><div id="JENNIFER-output"></div></div>
-        <div class="col col-8"><div id="WebGL-output"></div></div>
-    </div>
-</div>

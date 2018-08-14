@@ -1,5 +1,5 @@
 {
-  "name": "tutorial",
+  "name": "aries-plugin-tutorial",
   "version": "1.0.0",
   "scripts": {
     "server": "java -jar ./dist/threejs_local-0.0.5.jar",
@@ -12,14 +12,7 @@
     "babel-loader": "^7.1.5",
     "babel-preset-es2015": "^6.24.1",
     "css-loader": "^0.28.11",
-    "html-webpack-plugin": "^3.2.0",
     "mini-css-extract-plugin": "^0.4.1",
-    "node-sass": "^4.9.2",
-    "optimize-css-assets-webpack-plugin": "^5.0.0",
-    "postcss": "^6.0.22",
-    "postcss-loader": "^2.1.6",
-    "postcss-scss": "^1.0.5",
-    "sass-loader": "^7.1.0",
     "style-loader": "^0.21.0",
     "url-loader": "^1.0.1",
     "webpack": "^4.16.5",
