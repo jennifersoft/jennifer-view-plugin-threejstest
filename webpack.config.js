@@ -10,7 +10,7 @@ module.exports = (env) => {
         mode: env,
         entry: {
             vendors: [ 'three' ],
-            app: clientPath + '/main.js'
+            app: clientPath + '/index.js'
         },
         output: {
             path: outputPath,
@@ -75,17 +75,15 @@ module.exports = (env) => {
             }]
         },
         devServer: {
-            hot: false,
-            inline: true,
             contentBase: outputPath,
-            historyApiFallback: true,
-            compress: true,
             publicPath: '/',
             host: '127.0.0.1',
             port: 8081,
             proxy: {
                 '**': 'http://127.0.0.1:8080'
-            }
+            },
+            inline: true,
+            hot: false
         },
         plugins: [
             new MiniCssExtractPlugin({

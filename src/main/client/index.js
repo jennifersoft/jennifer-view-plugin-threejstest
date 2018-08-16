@@ -1,4 +1,4 @@
-import styles from './main.css'
+import styles from './index.css'
 import createSampleChart from './sample.js'
 import $ from 'jquery'
 
