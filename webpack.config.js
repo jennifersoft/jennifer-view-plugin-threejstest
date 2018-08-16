@@ -39,13 +39,7 @@ module.exports = (env) => {
                     }
                 }
             },
-            minimizer: (env == 'production') ? [
-                new UglifyJsPlugin({
-                    cache: true,
-                    parallel: true,
-                    sourceMap: true
-                })
-            ] : []
+            minimizer: (env == 'production') ? [ new UglifyJsPlugin() ] : []
         },
         module: {
             rules: [{
@@ -53,9 +47,7 @@ module.exports = (env) => {
                 use: [{
                     loader: 'babel-loader',
                     options: {
-                        presets: [
-                            ['es2015', {modules: false}]
-                        ]
+                        presets: [ 'es2015' ]
                     }
                 }]
             }, {
