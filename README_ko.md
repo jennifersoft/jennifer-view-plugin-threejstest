@@ -15,32 +15,32 @@
 
 다음 코드는 필수 라이브러리를 로드하기 위한 의존성 설정 부분이고, 나머지 빌드 관련은 본 프로젝트에서 배포하는 [pom.xml](https://github.com/jennifersoft/jennifer-view-plugin-tutorial/blob/master/pom.xml) 파일을 참고하자.
 ```xml
-	<dependencies>
-		<!-- TODO: 사용자가 필요한 라이브러리 추가하는 영역 -->
+<dependencies>
+	<!-- TODO: 사용자가 필요한 라이브러리 추가하는 영역 -->
 
-		<!-- 제니퍼 플러그인을 구현하기 위한 필수 라이브러리 -->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-devtools</artifactId>
-			<scope>provided</scope>
-			<optional>true</optional>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>com.aries</groupId>
-			<artifactId>extension</artifactId>
-			<version>1.1.0</version>
-		</dependency>
-	</dependencies>
+	<!-- 제니퍼 플러그인을 구현하기 위한 필수 라이브러리 -->
+	<dependency>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-web</artifactId>
+		<scope>provided</scope>
+	</dependency>
+	<dependency>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-devtools</artifactId>
+		<scope>provided</scope>
+		<optional>true</optional>
+	</dependency>
+	<dependency>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-test</artifactId>
+		<scope>test</scope>
+	</dependency>
+	<dependency>
+		<groupId>com.aries</groupId>
+		<artifactId>extension</artifactId>
+		<version>1.1.0</version>
+	</dependency>
+</dependencies>
 ```
 참고로 두개의 프로파일이 제공되는데, 독립적으로 실행하기 위한 jar 파일로 빌드하기 위해서는 **local**을 체크하고, 제니퍼 실험실에 추가하기 위해서는 **jennifer**를 체크해서 메이븐 인스톨을 하면 된다.
 
@@ -123,11 +123,11 @@ aries.output.css = app.css
 | theme | classic 또는 dark 문자열이 넘어오며, 종류에 따라 화면 스타일을 분기할 때 사용할 수 있다. |
 | language | 제니퍼 뷰서버에서 설정한 다국어 타입 문자열이 넘어온다. |
 
-다음은 package.json의 mainTpl에 설정된 vm 파일에 대한 샘플 코드이다.
+다음은 application.properties의 mainTpl에 설정된 vm 파일에 대한 샘플 코드이다.
 
 ```xml
 // src/main/resources/static 디렉토리에 있는 리소스 파일을 로드하는 코드
-<script type="text/javascript" src="$file.get("index.js")"></script>
+<img src="$file.get("logo.png")"></img>
 
 // src/main/resources/* 디렉토리 내에 있는 i18n 메시지를 출력하는 코드
 <div>i18n : $i18n.get("M0001")</div>
@@ -141,11 +141,13 @@ aries.output.css = app.css
 스프링 컴포넌트로 등록되기 위해서는 컨트롤러 클래스는 com.aries 패키지 안에 포함되어야 하고, 반드시 PluginController 클래스를 상속해야 한다. 컨트롤러 클래스는 아래와 같이 구현할 수 있다.
     
 ```java
-package com.aries.apimanager;
+package com.aries.tutorial;
 
 import com.aries.extension.starter.PluginController;
+import com.aries.extension.util.ConfigUtil;
+import com.aries.extension.util.LogUtil;
+import com.aries.extension.util.PropertyUtil;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -153,14 +155,22 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-public class ApimanagerController extends PluginController {
-    @RequestMapping(value = {"/apimanager"}, method = RequestMethod.GET)
-    @ResponseBody
-    public ModelAndView getMainPage(@RequestParam(defaultValue="test", required=false) String message) {
-        ModelAndView mav = new ModelAndView();
+public class TutorialController extends PluginController {
 
-        ModelMap map = mav.getModelMap();
-        map.put("message", message);
+    @RequestMapping(value = { "/tutorial" }, method = RequestMethod.GET)
+    @ResponseBody
+    public ModelAndView getMainPage(@RequestParam(required=false, defaultValue="") String layout) {
+        // TODO: layout 매개변수에 따라 다른 템플릿을 적용한다.
+        ModelAndView mav = new ModelAndView(layout.equals("iframe") ? "templates/iframe.vm" : "templates/main.vm");
+
+        // TODO: 어댑터 & 실험실 관리 화면에서 추가한 플러그인에 대한 옵션을 가져올 수 있다.
+        String property = PropertyUtil.getValue("tutorial", "db_path", "../db_path_property");
+
+        // TODO: server_view.conf 파일에 설정된 뷰서버 옵션을 가져올 수 있다.
+        String config = ConfigUtil.getValue("db_path", "../db_path_config");
+
+        // TODO: 플러그인의 로그를 남기는 유틸리티 클래스를 제공한다.
+        LogUtil.info(property + ", " + config);
 
         return mav;
     }
