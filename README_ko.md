@@ -13,7 +13,7 @@
 
 ## 메이븐 설정하기
 
-필수 라이브러리를 로드하기 위한 의존성 설정 부분이고, 나머지 빌드 관련은 본 프로젝트에서 배포하는 [pom.xml](https://github.com/jennifersoft/jennifer-view-plugin-tutorial/blob/master/pom.xml) 파일을 참고하자.
+다음 코드는 필수 라이브러리를 로드하기 위한 의존성 설정 부분이고, 나머지 빌드 관련은 본 프로젝트에서 배포하는 [pom.xml](https://github.com/jennifersoft/jennifer-view-plugin-tutorial/blob/master/pom.xml) 파일을 참고하자.
 ```xml
 	<dependencies>
 		<!-- TODO: 사용자가 필요한 라이브러리 추가하는 영역 -->
@@ -42,6 +42,7 @@
 		</dependency>
 	</dependencies>
 ```
+참고로 두개의 프로파일이 제공되는데, 독립적으로 실행하기 위한 jar 파일로 빌드하기 위해서는 **local**을 체크하고, 제니퍼 실험실에 추가하기 위해서는 **jennifer**를 체크해서 메이븐 인스톨을 하면 된다.
 
 ## 플러그인 구현하기
 
