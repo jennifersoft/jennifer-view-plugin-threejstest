@@ -21,7 +21,7 @@ public class TutorialController extends PluginController {
         ModelAndView mav = new ModelAndView(layout.equals("iframe") ? "templates/iframe.vm" : "templates/main.vm");
 
         // TODO: 어댑터 & 실험실 관리 화면에서 추가한 플러그인에 대한 옵션을 가져올 수 있다.
-        String property = PropertyUtil.getValue("tutorial", "db_path", "../db_path_property");
+        String property = PropertyUtil.getValue("plugin_tutorial", "db_path", "../db_path_property");
 
         // TODO: server_view.conf 파일에 설정된 뷰서버 옵션을 가져올 수 있다.
         String config = ConfigUtil.getValue("db_path", "../db_path_config");
