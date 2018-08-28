@@ -246,3 +246,6 @@ COMMAND> java -jar -Dtheme=dark,language=en 프로젝트명_local-버전.jar
 
 #### 1. 사용자정의 대시보드에 추가
 
+![이미지](https://raw.githubusercontent.com/jennifersoft/jennifer-extension-manuals/master/res/img/view_server_plugin_v3/2.png)
+![이미지](https://raw.githubusercontent.com/jennifersoft/jennifer-extension-manuals/master/res/img/view_server_plugin_v3/3.png)
+
