@@ -10,6 +10,10 @@
  3. Project Metadata 입력 > Type 선택 (Maven Project) > Next 클릭
  4. Dependencies 입력 > Spring Boot 버전 선택 (1.5.15) > 라이브러리 선택
 
+## 플러그인 구현하기
+
+### 메인 클래스 수정하기
+
 프로젝트가 생성되면 메인 클래스에 WebMvcConfigurer 스프링 인터페이스를 다음과 같이 구현해야 한다.
 ```java
 package com.aries.tutorial
@@ -33,8 +37,6 @@ public class TutorialApplication extends WebMvcConfigurerAdapter {
 	}
 }
 ```
-
-## 플러그인 구현하기
 
 ### package.json 생성하기
 
