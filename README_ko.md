@@ -42,7 +42,6 @@
 	</dependency>
 </dependencies>
 ```
-참고로 두개의 프로파일이 제공되는데, 독립적으로 실행하기 위한 jar 파일로 빌드하기 위해서는 **local**을 체크하고, 제니퍼 실험실에 추가하기 위해서는 **jennifer**를 체크해서 메이븐 인스톨을 하면 된다.
 
 ## 플러그인 구현하기
 
@@ -75,7 +74,7 @@ public class TutorialApplication extends WebMvcConfigurerAdapter {
 ### application.properties 수정하기
 
 제니퍼 서버에서 플러그인을 인식하기 위한 메타데이터로 [application.properties](https://github.com/jennifersoft/jennifer-view-plugin-tutorial/blob/master/src/main/resources/application.properties)을 참조하게 되며, 스프링 프로젝트를 생성하면 src/main/resources 디렉토리에 생성된다.
-> 5.3.x 버전에서 플러그인 개발시 사용되었던 메타데이터 파일인 package.json은 더이상 사용하지 않는다. 다만 프론트 개발시 NPM 패키지 설정을 위한 설정 파일로 사용될 수 있다.
+> 5.3.x 버전에서 플러그인 개발시 사용되었던 메타데이터 파일인 package.json은 더이상 사용하지 않는다. 다만 프론트 개발시 NPM 패키지 설정을 사용될 수 있다.
 
 ```
 aries.title = Plugin Tutorial
@@ -109,7 +108,7 @@ aries.output.css = app.css
 
 | 디렉토리 이름 | 설명 |
 |:-------|-------|
-| src/main/java/com.aries.* | 자바 코드가 들어가며 하위 디렉토리(또는 패키지) 이름은 자유롭게 설정할 수 있다. |
+| src/main/java/com/aries/* | 자바 코드가 들어가며 하위 디렉토리(또는 패키지) 이름은 자유롭게 설정할 수 있다. |
 | src/main/resources/static | 메인 화면에 로드되는 리소스(js, css, image) 파일들이 위치하는 디렉토리이다. |
 | src/main/resources/templates | 메인 화면의 템플릿(vm) 파일이 위치하는 곳이며, Velocity 문법을 따른다. |
 | src/main/resources/* | 기타 파일들이 위치하는 디렉토리이며, 하위 디렉토리 이름은 자유롭게 설정할 수 있다. 다국어 메시지 파일들이나 썸네일 이미지를 추가할 수 있다. |
@@ -179,7 +178,7 @@ public class TutorialController extends PluginController {
 }
 ```
 
-기본적으로 컨트롤러의 뷰는 application.properties에 설정된 aries.main.tpl을 참조하는데, ModelAndView 클래스의 생성자 변수로 상황에 맞게 원하는 템플릿을 설정할 수도 있다.
+기본적으로 컨트롤러의 뷰는 application.properties에 설정된 aries.main.tpl을 참조하는데, ModelAndView 클래스의 생성자 변수로 상황에 맞게 원하는 템플릿을 설정할 수 있다.
 
 
 ## 플러그인 프로젝트 빌드
