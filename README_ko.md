@@ -241,3 +241,8 @@ COMMAND> java -jar 프로젝트명_local-버전.jar
 또는 VM 옵션을 통해 기본 테마와 언어를 설정할 수 있다.
 COMMAND> java -jar -Dtheme=dark,language=en 프로젝트명_local-버전.jar
 ~~~
+
+## 플러그인 기능 활용하기
+
+#### 1. 사용자정의 대시보드에 추가
+
