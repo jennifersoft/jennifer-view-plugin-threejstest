@@ -5,10 +5,10 @@
 
 ## IntelliJ에서 플러그인 프로젝트 생성하기
 
- - 1. File > New > Project 클릭
- - 2. Spring Initialzr > Project SDK 선택 (1.8) > Next 클릭
- - 3. Project Metadata 입력 > Type 선택 (Maven Project) > Next 클릭
- - 4. Dependencies 입력 > Spring Boot 버전 선택 (1.5.15) > 라이브러리 선택
+ 1. File > New > Project 클릭
+ 2. Spring Initialzr > Project SDK 선택 (1.8) > Next 클릭
+ 3. Project Metadata 입력 > Type 선택 (Maven Project) > Next 클릭
+ 4. Dependencies 입력 > Spring Boot 버전 선택 (1.5.15) > 라이브러리 선택
 
 프로젝트가 생성되면 메인 클래스에 WebMvcConfigurer 스프링 인터페이스를 다음과 같이 구현해야 한다.
 ```java
