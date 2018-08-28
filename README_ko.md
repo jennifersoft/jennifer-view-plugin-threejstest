@@ -8,7 +8,9 @@
  1. File > New > Project 클릭
  2. Spring Initialzr > Project SDK 선택 (1.8) > Next 클릭
  3. Project Metadata 입력 > Type 선택 (Maven Project) > Next 클릭
+ 3-1. Group은 com.aries로 입력해야 하고, Artifact는 자신의 프로젝트에 맞게 추가하면 된다.
  4. Dependencies 입력 > Spring Boot 버전 선택 (1.5.15) > 라이브러리 선택
+ 5. com.aries.extension 라이브러리와 빌드 관련 메이븐 플러그인에 대한 설정 코드를 [pom.xml](https://github.com/jennifersoft/jennifer-view-plugin-tutorial/blob/master/pom.xml)에 추가하자.
 
 ## 플러그인 구현하기
 
