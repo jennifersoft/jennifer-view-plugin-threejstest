@@ -74,17 +74,17 @@ public class TutorialApplication extends WebMvcConfigurerAdapter {
 
 ### application.properties 수정하기
 
-제니퍼 서버에서 플러그인을 인식하기 위한 메타데이터로 package.json을 참조하게 되며, 프로젝트 루트 디렉토리(src/main/resources)에 필수적으로 존재해야만 한다. 다음은 이미 github에 공개된 api manager 플러그인의 [package.json](https://github.com/jennifersoft/jennifer-view-plugin-apimanager/blob/master/src/package.json) 내용이다. 독립적인 플러그인 개발환경에서는 기존의 resources 옵션을 사용하지 않는다. 관련해서는 다음장에 자세히 설명하겠다.
+제니퍼 서버에서 플러그인을 인식하기 위한 메타데이터로 package.json을 참조하게 되며, 프로젝트 루트 디렉토리(src/main/resources)에 필수적으로 존재해야만 한다. 다음은 이미 github에 공개된 api manager 플러그인의 [application.properties](https://github.com/jennifersoft/jennifer-view-plugin-tutorial/blob/master/src/main/resources/application.properties) 내용이다. 독립적인 플러그인 개발환경에서는 기존의 resources 옵션을 사용하지 않는다. 관련해서는 다음장에 자세히 설명하겠다.
 ```
-{
-	"title": "API Manager",
-	"description": "",
-	"version": "5.3.2.2",
-	"mainUrl": "/plugin/apimanager",
-	"mainTpl": "tpl/index.vm",
-	"thumbnails": [ "img/classic.png", "img/dark.png" ],
-	"i18n": [ "i18n/message_ko.properties", "i18n/message_en.properties" ]
-}
+aries.title = Plugin Tutorial
+aries.description = JENNIFER Plug-in development tutorial page
+aries.version = 5.4.0
+aries.main.url = /plugin/tutorial
+aries.main.tpl = templates/index.vm
+aries.directory.i18n = i18n
+aries.directory.thumbnail = thumbnails
+aries.output.js = runtime.js, vendors.js, app.js
+aries.output.css = app.css
 ```
 각각의 프로퍼티들에 대한 설명은 아래와 같다.
 
