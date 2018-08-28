@@ -48,7 +48,7 @@
 
 ### 메인 클래스 수정하기
 
-프로젝트가 생성되면 스프링 인터셉터를 추가하기 위해 WebMvcConfigurer 인터페이스를 메인 클래스에 다음과 같이 구현해야 한다.
+제니퍼 확장 라이브러리에서 제공하는 스프링 인터셉터를 추가하기 위해 WebMvcConfigurer 인터페이스를 메인 클래스에 다음과 같이 구현해야 한다.
 ```java
 package com.aries.tutorial
 
