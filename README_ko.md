@@ -248,7 +248,7 @@ COMMAND> java -jar -Dtheme=dark,language=en 프로젝트명_local-버전.jar
 **/plugin/tutorial?layout=iframe**과 같이 페이지의 레이아웃을 설정할 수 있는데, 현재는 Iframe 타입만 제공한다. 레이아웃이 Iframe 타입일 때, 본문을 제외한 나머지 영역은 모두 제거된다.
 
 #### 2. 사용자정의 대시보드에 추가
-추가된 플러그인 페이지는 사용자정의 대시보드의 컴포넌트로 사용될 수 있는데, 앞에서 설명한 Iframe 모드로 플러그인을 추가할 수 있는 기능을 제공한다.
+추가된 플러그인 페이지는 사용자정의 대시보드의 컴포넌트로 사용할 수 있는데, 앞에서 설명한 Iframe 모드로 플러그인을 추가한다.
 ![이미지](https://raw.githubusercontent.com/jennifersoft/jennifer-extension-manuals/master/res/img/view_server_plugin_v3/2.png)
 ![이미지](https://raw.githubusercontent.com/jennifersoft/jennifer-extension-manuals/master/res/img/view_server_plugin_v3/3.png)
 
