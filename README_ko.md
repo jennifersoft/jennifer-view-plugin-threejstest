@@ -1,0 +1,295 @@
+# 독립적인 플러그인 개발환경이란?
+
+기존에는 개발 중인 플러그인을 동작시키기 위해 jar 파일로 빌드한 후, 제니퍼 뷰서버 관리화면에 등록을 하고, 제니퍼 뷰서버를 재시작해야 하는 번거로운 과정을 거쳤었다. 특히 제니퍼 뷰서버 자체가 무겁기 때문에 재시작이 오래 걸려 수정한 작업 내용을 확인하는데 어려움이 있었다. 그래서 제니퍼 뷰서버에 의존하지 않는 스프링부트 기반의 독립적인 플러그인 개발환경을 구상하게 되었다.
+
+
+## IntelliJ에서 플러그인 프로젝트 생성하기
+
+차후에 이클립스 기반의 개발 가이드를 제공할 예정이다.
+
+1. File > New > Project... > Spring Initialzr을 선택하여, 새로운 프로젝트를 생성한다.
+![이미지](https://raw.githubusercontent.com/jennifersoft/jennifer-extension-manuals/master/res/img/view_server_plugin_v2/1.png)
+
+2. 프로젝트 Group을 com.aries로 설정해야하며, Artifact는 임의로 설정할 수 있다.
+![이미지](https://raw.githubusercontent.com/jennifersoft/jennifer-extension-manuals/master/res/img/view_server_plugin_v2/2.png)
+
+3. Dependencies에서 Web 탭 > Web 체크박스 선택 정도만 해주자. 프로젝트 특성에 따라 임의로 추가 설정을 할 수 있다.
+![이미지](https://raw.githubusercontent.com/jennifersoft/jennifer-extension-manuals/master/res/img/view_server_plugin_v2/3.png)
+
+4. pom.xml 파일을 아래와 같이 변경해야 하며, 로컬 메이븐 저장소에 [jennifer.extension-1.0.1.jar](https://github.com/jennifersoft/jennifer-extension-manuals/blob/master/lib/jennifer.extension-1.0.1.jar)파일을 추가해줘야 한다. 기존에는 제니퍼 뷰서버 lib 디렉토리 전체를 추가했었지만 이번에 독립적인 플러그인 개발환경 구성을 위해 별도의 프로젝트로 분리했다.
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<!-- TODO: groupId는 com.aries로 해야만 하고, 나머지는 사용자 프로젝트에 맞게 수정하면 된다. -->
+	<groupId>com.aries</groupId>
+	<artifactId>apimanager</artifactId>
+	<version>0.0.1</version>
+	<packaging>jar</packaging>
+
+	<!-- TODO: 사용자 프로젝트에 맞게 수정하면 된다. -->
+	<name>apimanager</name>
+	<description>Demo project for Spring Boot</description>
+
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>1.5.12.RELEASE</version>
+		<relativePath/>
+	</parent>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<java.version>1.7</java.version>
+
+		<!-- TODO: 플러그인 jar 파일 생성 디렉토리 및 파일 네이밍 설정 -->
+		<plugin.output.directoryName>${project.basedir}/dist</plugin.output.directoryName>
+		<plugin.output.fileName>${project.artifactId}_${env}-${project.version}</plugin.output.fileName>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<!-- TODO: 로컬 메이븐 저장소에 추가되어 있어야 함 (차후 온라인에 공개할 예정) -->
+		<dependency>
+			<groupId>com.aries</groupId>
+			<artifactId>extension</artifactId>
+			<version>1.0.1</version>
+		</dependency>
+	
+		<!-- TODO: 직접 사용하는 라이브러리들은 여기에 디펜던시를 추가해주면 된다. -->
+	</dependencies>
+
+	<profiles>
+		<!-- 독립적으로 실행되는 플러그인 jar 파일 -->
+		<profile>
+			<id>local</id>
+			<properties>
+				<env>local</env>
+			</properties>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<dependencies>
+				<dependency>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-starter-web</artifactId>
+				</dependency>
+			</dependencies>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.springframework.boot</groupId>
+						<artifactId>spring-boot-maven-plugin</artifactId>
+						<configuration>
+							<outputDirectory>${plugin.output.directoryName}</outputDirectory>
+							<finalName>${plugin.output.fileName}</finalName>
+						</configuration>
+						<executions>
+							<execution>
+								<goals>
+									<goal>repackage</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+		<!-- 제니퍼에 실험실로 추가할 수 있는 jar 파일 -->
+		<profile>
+			<id>jennifer</id>
+			<properties>
+				<env>jennifer</env>
+			</properties>
+			<dependencies>
+				<dependency>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-starter-web</artifactId>
+					<scope>provided</scope>
+				</dependency>
+			</dependencies>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-shade-plugin</artifactId>
+						<configuration>
+							<artifactSet>
+								<excludes>
+									<exclude>com.aries:extension</exclude>
+									<exclude>org.springframework:*</exclude>
+									<exclude>javax.servlet:*</exclude>
+									<exclude>org.apache.velocity:*</exclude>
+									<exclude>org.apache.commons:*</exclude>
+									<exclude>org.slf4j:*</exclude>
+									<exclude>org.json:*</exclude>
+								</excludes>
+							</artifactSet>
+							<outputFile>${plugin.output.directoryName}/${plugin.output.fileName}.${project.packaging}</outputFile>
+						</configuration>
+						<executions>
+							<execution>
+								<phase>package</phase>
+								<goals>
+									<goal>shade</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
+</project>
+```
+
+5. 생성된 메인 클래스에 WebMvcConfigurer 스프링 인터페이스를 다음과 같이 구현해야 한다.
+```java
+package com.aries.apimanager
+
+import com.aries.extension.starter.PluginStarter;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+
+@SpringBootApplication
+public class ApimanagerApplication extends WebMvcConfigurerAdapter {
+	@Override
+	public void addInterceptors(InterceptorRegistry registry) {
+		// TODO: jennifer.extension-1.0.1.jar 파일을 로드하면... 
+		// PluginStarter 클래스를 import 할 수 있으며, 스프링 인터셉터로 추가한다.
+		registry.addInterceptor(new PluginStarter()).addPathPatterns("/plugin/**");
+	}
+
+	public static void main(String[] args) {
+		SpringApplication.run(ApimanagerApplication.class, args);
+	}
+}
+```
+
+## 플러그인 구현하기
+
+### package.json 생성하기
+
+제니퍼 서버에서 플러그인을 인식하기 위한 메타데이터로 package.json을 참조하게 되며, 프로젝트 루트 디렉토리(src/main/resources)에 필수적으로 존재해야만 한다. 다음은 이미 github에 공개된 api manager 플러그인의 [package.json](https://github.com/jennifersoft/jennifer-view-plugin-apimanager/blob/master/src/package.json) 내용이다. 독립적인 플러그인 개발환경에서는 기존의 resources 옵션을 사용하지 않는다. 관련해서는 다음장에 자세히 설명하겠다.
+```
+{
+	"title": "API Manager",
+	"description": "",
+	"version": "5.3.2.2",
+	"mainUrl": "/plugin/apimanager",
+	"mainTpl": "tpl/index.vm",
+	"thumbnails": [ "img/classic.png", "img/dark.png" ],
+	"i18n": [ "i18n/message_ko.properties", "i18n/message_en.properties" ]
+}
+```
+각각의 프로퍼티들에 대한 설명은 아래와 같다.
+
+| 프로퍼티 이름 | 설명 | 필수 |
+|:-------|-------|-------:|
+| title | 제니퍼 화면에 노출되는 플러그인 이름 | X |
+| description | 뷰 서버에 노출되는 플러그인 설명 | X |
+| version | 플러그인이 로드될 제니퍼 서버의 최소 버전 (5.3.2.2 이상을 입력해야 함) | X |
+| mainUrl | 플러그인 메인 URL (제니퍼 서버 URL/mailUrl) | O |
+| mainTpl | 플러그인 메인 URL에 매핑되는 템플릿 파일 경로 | O |
+| thumbnails | 제니퍼 실험실 목록에 보이는 썸네일 이미지 경로 (제니퍼 테마명과 동일 classic 또는 dark) | X |
+| i18n | 다국어 properties 파일 (message_국가코드.properties 형태로 이름을 정해야 함) | X |
+
+### 스프링부트 프로젝트의 디렉토리 구조
+
+디렉토리 구조는 다음과 같다.
+
+| 디렉토리 이름 | 설명 |
+|:-------|-------|
+| src/main/java/com.aries.* | 자바 코드가 들어가며 하위 디렉토리(또는 패키지) 이름은 자유롭게 설정할 수 있다. |
+| src/main/resources/static | 메인 화면에 로드되는 리소스(js, css, image) 파일들이 위치하는 디렉토리이다. |
+| src/main/resources/templates | 메인 화면의 템플릿(vm) 파일이 위치하는 곳이며, Velocity 문법을 따른다. |
+| src/main/resources/* | 기타 파일들이 위치하는 디렉토리이며, 하위 디렉토리 이름은 자유롭게 설정할 수 있다. 다국어 메시지 파일들이나 썸네일 이미지를 추가할 수 있다. |
+
+### 플러그인 템플릿 생성하기
+
+템플릿 문법은 [Apache Velocity Engine](http://velocity.apache.org/engine/1.7/user-guide.html)를 따르며, ModelMap을 통해 뷰에서 사용할 매개변수 값을 넘겨줄 수 있다. 위에서 설명한 package.json에 설정된 mainTpl에서 다음과 같은 객체들을 참조할 수 있는데, 관련된 기능은 다음과 같이 정리된다.
+
+| 객체 이름 | 설명 |
+|:-------|-------|
+| file | src/main/resources/static 디렉토리에 있는 리소스 파일들을 참조할 수 있다. |
+| i18n | src/main/resources/* 디렉토리 내에 추가된 i18n 메시지들을 참조할 수 있다. |
+| theme | classic 또는 dark 문자열이 넘어오며, 종류에 따라 화면 스타일을 분기할 때 사용할 수 있다. |
+| language | 제니퍼 뷰서버에서 설정한 다국어 타입 문자열이 넘어온다. |
+
+다음은 package.json의 mainTpl에 설정된 vm 파일에 대한 샘플 코드이다.
+
+```xml
+// src/main/resources/static 디렉토리에 있는 리소스 파일을 로드하는 코드
+<script type="text/javascript" src="$file.get("index.js")"></script>
+
+// src/main/resources/* 디렉토리 내에 있는 i18n 메시지를 출력하는 코드
+<div>i18n : $i18n.get("M0001")</div>
+
+// 메인 컨트롤러에서 넘겨준 매개변수를 출력하는 코드 (매개변수 이름은 임의로 설정할 수 있음)
+<strong>parameter : $message</strong>
+```
+
+### 플러그인 컨트롤러 생성하기
+
+스프링 컴포넌트로 등록되기 위해서는 컨트롤러 클래스는 com.aries 패키지 안에 포함되어야 하고, 반드시 PluginController 클래스를 상속해야 한다. 컨트롤러 클래스는 아래와 같이 구현할 수 있다.
+    
+```java
+package com.aries.apimanager;
+
+import com.aries.extension.starter.PluginController;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
+
+@Controller
+public class ApimanagerController extends PluginController {
+    @RequestMapping(value = {"/apimanager"}, method = RequestMethod.GET)
+    @ResponseBody
+    public ModelAndView getMainPage(@RequestParam(defaultValue="test", required=false) String message) {
+        ModelAndView mav = new ModelAndView();
+
+        ModelMap map = mav.getModelMap();
+        map.put("message", message);
+
+        return mav;
+    }
+}
+```
+
+위와 같이 구현된 플러그인 컨트롤러는 package.json에 설정된 mainTpl(템플릿 파일)에 매핑되며, http://127.0.0.1:8080/plugin/apimanager 를 통해 실행 할 수 있다.
+
+![이미지](https://raw.githubusercontent.com/jennifersoft/jennifer-extension-manuals/master/res/img/view_server_plugin_v2/5.png)
+
+
+## 플러그인 프로젝트 빌드
+
+다음과 같이 두가지 형태로 빌드하여 배포할 수 있다.
+
+### 제니퍼 뷰서버에 실험실로 로드되는 jar 파일로 빌드하기
+
+메이븐 프로젝트의 jennifer 프로파일을 선택해서 인스톨하면, dist 디렉토리에 **프로젝트명_jennifer-버전.jar** 파일이 생성된다. 해당 jar 파일은 제니퍼5 어댑터 및 실험실 관리화면을 통해 추가할 수 있다.
+
+### 독립적으로 실행되는 jar 파일로 빌드하기
+
+메이븐 프로젝트의 local 프로파일을 선택해서 인스톨하면, dist 디렉토리에 **프로젝트명_local-버전.jar** 파일이 생성된다. 해당 jar 파일은 다음과 같이 실행할 수 있다.
+
+~~~bash
+COMMAND> java -jar 프로젝트명_local-버전.jar
+
+또는 VM 옵션을 통해 기본 테마와 언어를 설정할 수 있다.
+COMMAND> java -jar -Dtheme=dark,language=en 프로젝트명_local-버전.jar
+~~~
