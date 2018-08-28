@@ -181,11 +181,11 @@ public class TutorialController extends PluginController {
 기본적으로 컨트롤러의 뷰는 application.properties에 설정된 aries.main.tpl을 참조하는데, ModelAndView 클래스의 생성자 변수로 상황에 맞게 원하는 템플릿을 설정할 수 있다.
 
 
-## 플러그인 프로젝트 빌드
+## 플러그인 프로젝트 배포하기
 
 다음과 같이 두가지 형태로 빌드하여 배포할 수 있다.
 
-### 제니퍼 뷰서버에 실험실로 로드되는 jar 파일로 빌드하기
+### 제니퍼 뷰서버에 실험실로 로드되는 jar 파일로 배포하기
 
 메이븐 프로젝트의 jennifer 프로파일을 선택해서 인스톨하면, dist 디렉토리에 **프로젝트명_jennifer-버전.jar** 파일이 생성된다. 해당 jar 파일은 제니퍼5 어댑터 및 실험실 관리화면을 통해 추가할 수 있다.
 
