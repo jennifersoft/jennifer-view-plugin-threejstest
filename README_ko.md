@@ -29,7 +29,7 @@ public class TutorialApplication extends WebMvcConfigurerAdapter {
 	}
 
 	public static void main(String[] args) {
-		SpringApplication.run(ApimanagerApplication.class, args);
+		SpringApplication.run(TutorialApplication.class, args);
 	}
 }
 ```
