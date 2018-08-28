@@ -12,7 +12,7 @@
 
 프로젝트가 생성되면 메인 클래스에 WebMvcConfigurer 스프링 인터페이스를 다음과 같이 구현해야 한다.
 ```java
-package com.aries.apimanager
+package com.aries.tutorial
 
 import com.aries.extension.starter.PluginStarter;
 import org.springframework.boot.SpringApplication;
@@ -21,11 +21,10 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 @SpringBootApplication
-public class ApimanagerApplication extends WebMvcConfigurerAdapter {
+public class TutorialApplication extends WebMvcConfigurerAdapter {
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
-		// TODO: jennifer.extension-1.0.1.jar 파일을 로드하면... 
-		// PluginStarter 클래스를 import 할 수 있으며, 스프링 인터셉터로 추가한다.
+		// PluginStarter 클래스를 스프링 기본 인터셉터로 추가한다.
 		registry.addInterceptor(new PluginStarter()).addPathPatterns("/plugin/**");
 	}
 
