@@ -74,7 +74,7 @@ public class TutorialApplication extends WebMvcConfigurerAdapter {
 
 ### application.properties 수정하기
 
-제니퍼 서버에서 플러그인을 인식하기 위한 메타데이터로 package.json을 참조하게 되며, 프로젝트 루트 디렉토리(src/main/resources)에 필수적으로 존재해야만 한다. 다음은 이미 github에 공개된 api manager 플러그인의 [application.properties](https://github.com/jennifersoft/jennifer-view-plugin-tutorial/blob/master/src/main/resources/application.properties) 내용이다. 독립적인 플러그인 개발환경에서는 기존의 resources 옵션을 사용하지 않는다. 관련해서는 다음장에 자세히 설명하겠다.
+제니퍼 서버에서 플러그인을 인식하기 위한 메타데이터로 [application.properties](https://github.com/jennifersoft/jennifer-view-plugin-tutorial/blob/master/src/main/resources/application.properties)을 참조하게 되며, 스프링 프로젝트를 생성하면 src/main/resources 디렉토리에 생성된다.
 ```
 aries.title = Plugin Tutorial
 aries.description = JENNIFER Plug-in development tutorial page
@@ -86,17 +86,20 @@ aries.directory.thumbnail = thumbnails
 aries.output.js = runtime.js, vendors.js, app.js
 aries.output.css = app.css
 ```
-각각의 프로퍼티들에 대한 설명은 아래와 같다.
+
+프로퍼티에 대한 설명은 다음과 같으며, 메인 템플릿이 없을 경우에는 제니퍼 뷰서버는 해당 플러그인을 API 타입으로 인식한다.
 
 | 프로퍼티 이름 | 설명 | 필수 |
 |:-------|-------|-------:|
-| title | 제니퍼 화면에 노출되는 플러그인 이름 | X |
-| description | 뷰 서버에 노출되는 플러그인 설명 | X |
-| version | 플러그인이 로드될 제니퍼 서버의 최소 버전 (5.3.2.2 이상을 입력해야 함) | X |
-| mainUrl | 플러그인 메인 URL (제니퍼 서버 URL/mailUrl) | O |
-| mainTpl | 플러그인 메인 URL에 매핑되는 템플릿 파일 경로 | O |
-| thumbnails | 제니퍼 실험실 목록에 보이는 썸네일 이미지 경로 (제니퍼 테마명과 동일 classic 또는 dark) | X |
-| i18n | 다국어 properties 파일 (message_국가코드.properties 형태로 이름을 정해야 함) | X |
+| aries.title | 제니퍼 화면에 노출되는 플러그인 이름 | X |
+| aries.description | 뷰 서버에 노출되는 플러그인 설명 | X |
+| aries.version | 플러그인이 로드될 제니퍼 서버의 최소 버전 (5.4.0 이상을 입력해야 함) | X |
+| aries.main.url | 플러그인 메인 URL (제니퍼 서버 URL/mailUrl) | O |
+| aries.main.tpl | 플러그인 메인 URL에 매핑되는 템플릿 파일 경로 | X |
+| aries.directory.i18n | 다국어 properties 파일 (message_국가코드.properties 형태로 이름을 정해야 함) | X |
+| aries.directory.thumbnail | 제니퍼 실험실 목록에 보이는 썸네일 이미지 경로 (제니퍼 테마명과 동일 classic 또는 dark) | X |
+| aries.output.js | 메인 템플릿에 인젝션되는 스크립트 파일 목록 | X |
+| aries.output.css | 메인 템플릿에 인젝션되는 스타일 파일 목록 | X |
 
 ### 스프링부트 프로젝트의 디렉토리 구조
 
