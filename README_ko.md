@@ -75,6 +75,8 @@ public class TutorialApplication extends WebMvcConfigurerAdapter {
 ### application.properties 수정하기
 
 제니퍼 서버에서 플러그인을 인식하기 위한 메타데이터로 [application.properties](https://github.com/jennifersoft/jennifer-view-plugin-tutorial/blob/master/src/main/resources/application.properties)을 참조하게 되며, 스프링 프로젝트를 생성하면 src/main/resources 디렉토리에 생성된다.
+> 5.3.x 버전에서 플러그인 개발시 사용되었던 메타데이터 파일인 package.json은 더이상 사용하지 않는다. 다만 프론트 개발시 NPM 패키지 설정을 위한 설정 파일로 사용될 수 있다.
+
 ```
 aries.title = Plugin Tutorial
 aries.description = JENNIFER Plug-in development tutorial page
