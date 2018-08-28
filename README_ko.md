@@ -182,8 +182,9 @@ public class TutorialController extends PluginController {
 
 ### 플러그인 자바스크립트 API 사용하기
 
-X-View 트랜잭션 분석 및 액티브 서비스 목록 팝업을 플러그인에서 보여줄 수 있는 자바스크립트 API를 제공한다.
-> 차후에는 제니퍼에서 제공하는 실시간 차트와 Open API를 쉽게 사용할 수 있는 자바스크립트 API를 제공할 예정이다.
+Open API를 쉽게 조회할 수 있고, X-View 트랜잭션 분석 및 액티브 서비스 목록 팝업을 보여주는 API를 제공한다. 참고로 팝업의 종류는 앞으로 늘려나갈 예정이다.
+
+> 차후에는 제니퍼에서 제공하는 실시간 차트와 플러그인 페이지에 임포트 할 수 있는 자바스크립트 API를 제공할 예정이다.
 
 ```javascript
 $(function() {
@@ -208,6 +209,13 @@ $(function() {
         aries.extension.popup("activeService", {
             domainId: 7908
         });
+    });
+    
+    // TODO: 제니퍼 Open API를 쉽게 조회할 수 있는 함수이다.
+    aries.extension.api("instance", {
+        domain_id: 7908
+    }, function(res) {
+        console.log(res);
     });
 });
 ```
