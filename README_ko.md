@@ -180,6 +180,43 @@ public class TutorialController extends PluginController {
 
 기본적으로 컨트롤러의 뷰는 application.properties에 설정된 aries.main.tpl을 참조하는데, ModelAndView 클래스의 생성자 변수로 상황에 맞게 원하는 템플릿을 설정할 수 있다.
 
+### 플러그인 자바스크립트 API 사용하기
+
+X-View 트랜잭션 분석 및 액티브 서비스 목록 팝업을 플러그인에서 보여줄 수 있는 자바스크립트 API를 제공한다.
+
+```javascript
+$(function() {
+    // TODO: 제니퍼 서버 주소와 API 사용시 토큰 값을 설정한다.
+    aries.extension.setup({
+        hostName: "https://dev.jennifersoft.com",
+        apiToken: "6tXrtSu5i8T"
+    });
+
+    $("#xview_popup").on("click", function(e) {
+        // TODO: 다이렉트로 제니퍼의 X-View 팝업을 띄우는 함수이다.
+        aries.extension.popup("xview", {
+            domainId: 7908,
+            txIds: [ "-6371365836736069843", "6541742202344215657", "-3416726780880622050" ],
+            startTime: 1535462614471,
+            endTime: 1535462614471
+        });
+    });
+
+    $("#active_popup").on("click", function(e) {
+        // TODO: 다이렉트로 제니퍼의 액티브서비스 팝업을 띄우는 함수이다.
+        aries.extension.popup("activeService", {
+            domainId: 7908
+        });
+    });
+
+    // TODO: 제니퍼 Open API를 쉽게 조회할 수 있는 함수이다.
+    aries.extension.api("instance", {
+        domain_id: 7908
+    }, function(res) {
+        console.log(res);
+    });
+});
+```
 
 ## 플러그인 프로젝트 배포하기
 
