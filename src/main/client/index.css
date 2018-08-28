@@ -4,10 +4,6 @@
     overflow: hidden;
 }
 
-#tutorial-main h1 {
-    color: purple;
-}
-
 #tutorial-main .title {
     position: relative;
 }
@@ -24,4 +20,14 @@
     font-size: 14px;
     left: 30px;
     top: 5px;
+}
+
+#tutorial-main .title > span.dark {
+    color: #888;
+}
+
+#tutorial-main .title > .group {
+    position: absolute;
+    left: 250px;
+    top: 0px;
 }
