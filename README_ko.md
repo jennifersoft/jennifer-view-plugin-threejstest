@@ -257,3 +257,5 @@ COMMAND> java -jar -Dtheme=dark,language=en 프로젝트명_local-버전.jar
 ![이미지](https://raw.githubusercontent.com/jennifersoft/jennifer-extension-manuals/master/res/img/view_server_plugin_v3/1.png)
 
 ## 웹팩 기반의 프론트엔드 개발하기
+
+
