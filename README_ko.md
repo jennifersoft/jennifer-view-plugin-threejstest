@@ -253,6 +253,6 @@ COMMAND> java -jar -Dtheme=dark,language=en 프로젝트명_local-버전.jar
 ![이미지](https://raw.githubusercontent.com/jennifersoft/jennifer-extension-manuals/master/res/img/view_server_plugin_v3/3.png)
 
 #### 3. 공유하기 URL
-페이지 타입의 플러그인은 로그인 인증이 된 상태에서만 접근할 수 있다. 하지만 공유하기 URL을 통해 로그인 인증을 거치지 않고, 다이렉트로 플러그인 페이지로 접근이 가능하다.
+페이지 타입의 플러그인은 로그인 인증이 된 상태에서만 접근할 수 있다. 하지만 공유하기 URL을 통해 로그인 인증을 거치지 않고, 플러그인 페이지로 접근이 가능하다.
 ![이미지](https://raw.githubusercontent.com/jennifersoft/jennifer-extension-manuals/master/res/img/view_server_plugin_v3/1.png)
 
