@@ -208,15 +208,9 @@ $(function() {
             domainId: 7908
         });
     });
-
-    // TODO: 제니퍼 Open API를 쉽게 조회할 수 있는 함수이다.
-    aries.extension.api("instance", {
-        domain_id: 7908
-    }, function(res) {
-        console.log(res);
-    });
 });
 ```
+> 제니퍼에서 제공하는 실시간 차트와 Open API를 쉽게 사용할 수 있는 자바스크립트 API를 제공할 예정이다.
 
 ## 플러그인 프로젝트 배포하기
 
