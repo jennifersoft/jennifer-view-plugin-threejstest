@@ -11,7 +11,7 @@
  3-1. Group은 com.aries로 입력해야 하고, Artifact는 자신의 프로젝트에 맞게 추가하면 된다.
  4. Dependencies 입력 > Spring Boot 버전 선택 (1.5.15) > 라이브러리 선택
 
-다음은 [pom.xml](https://github.com/jennifersoft/jennifer-view-plugin-tutorial/blob/master/pom.xml)의 의존성 라이브러리를 추가하는 부분이다.
+다음은 필수 라이브러리를 로드하기 위한 의존성 설정 부분이고, 나머지 빌드 관련은 본 프로젝트에서 배포하는 [pom.xml](https://github.com/jennifersoft/jennifer-view-plugin-tutorial/blob/master/pom.xml) 파일을 참고하자.
 ```xml
 	<dependencies>
 		<!-- TODO: 사용자가 필요한 라이브러리 추가하는 영역 -->
