@@ -179,9 +179,7 @@ public class TutorialController extends PluginController {
 }
 ```
 
-위와 같이 구현된 플러그인 컨트롤러는 package.json에 설정된 mainTpl(템플릿 파일)에 매핑되며, http://127.0.0.1:8080/plugin/apimanager 를 통해 실행 할 수 있다.
-
-![이미지](https://raw.githubusercontent.com/jennifersoft/jennifer-extension-manuals/master/res/img/view_server_plugin_v2/5.png)
+기본적으로 컨트롤러의 뷰는 application.properties에 설정된 aries.main.tpl을 참조하는데, ModelAndView 클래스의 생성자 변수로 상황에 맞게 원하는 템플릿을 설정할 수도 있다.
 
 
 ## 플러그인 프로젝트 빌드
