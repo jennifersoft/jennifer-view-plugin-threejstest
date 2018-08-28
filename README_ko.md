@@ -183,6 +183,7 @@ public class TutorialController extends PluginController {
 ### 플러그인 자바스크립트 API 사용하기
 
 X-View 트랜잭션 분석 및 액티브 서비스 목록 팝업을 플러그인에서 보여줄 수 있는 자바스크립트 API를 제공한다.
+> 차후에는 제니퍼에서 제공하는 실시간 차트와 Open API를 쉽게 사용할 수 있는 자바스크립트 API를 제공할 예정이다.
 
 ```javascript
 $(function() {
@@ -210,7 +211,6 @@ $(function() {
     });
 });
 ```
-> 제니퍼에서 제공하는 실시간 차트와 Open API를 쉽게 사용할 수 있는 자바스크립트 API를 제공할 예정이다.
 
 ## 플러그인 프로젝트 배포하기
 
