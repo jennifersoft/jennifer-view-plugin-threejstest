@@ -13,7 +13,7 @@
  5. com.aries.extension 라이브러리와 빌드 관련 메이븐 플러그인에 대한 설정 코드를 [pom.xml](https://github.com/jennifersoft/jennifer-view-plugin-tutorial/blob/master/pom.xml)에 추가하자.
 
 다음은 pom.xml의 의존성 라이브러리를 추가하는 부분이다.
-'''
+```xml
 	<dependencies>
 		<!-- TODO: 사용자가 필요한 라이브러리 추가하는 영역 -->
 
@@ -40,7 +40,7 @@
 			<version>1.1.0</version>
 		</dependency>
 	</dependencies>
-'''
+```
 
 ## 플러그인 구현하기
 
