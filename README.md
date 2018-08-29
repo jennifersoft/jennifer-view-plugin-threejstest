@@ -1,3 +1,18 @@
+# JENNIFER Extension Architecture
+
+JENNIFER seeks to be a platform that can provide a variety of expansion features.
+
+![이미지](https://raw.githubusercontent.com/jennifersoft/jennifer-extension-manuals/master/res/img/view_server_extension/infographic_en.png)
+
+# JENNIFER View Plugin Tutorial
+
+This repository contains Plugin development guides and sample code for creating JENNIFER View Server Plugin
+
+## Guides 
+
+* [Plugin Developer Korean Guide](./README_ko.md)
+* [Plugin Developer English Guide](./README_en.md)
+
 ## Getting started
 
 Enter the command as follows.
@@ -5,10 +20,6 @@ Enter the command as follows.
  1. git clone https://github.com/jennifersoft/jennifer-view-plugin-tutorial.git 
  2. cd jennifer-view-plugin-tutorial
  3. mvn install
- 4. npm install
- 5. java -jar dist/plugin-tutorial_local-1.0.0.jar (or Running in development tools)
- 6. npm start
+ 4. java -jar dist/plugin-tutorial_local-1.0.0.jar (or Running in development tools)
  
- If you modify the js or scss file in the 'src/main/resources/static/*' directory, it will be automatically bundled.
- 
- Test URL : http://localhost:8081/plugin/tutorial
+ Test URL : http://localhost:8080/plugin/tutorial

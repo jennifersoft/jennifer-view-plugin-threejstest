@@ -1,9 +1,12 @@
-# 독립적인 플러그인 개발환경이란?
+# 제니퍼 서버 플러그인
 
-기존에는 개발 중인 플러그인을 동작시키기 위해 jar 파일로 빌드한 후, 제니퍼 뷰서버 관리화면에 등록을 하고, 제니퍼 뷰서버를 재시작해야 하는 번거로운 과정을 거쳤었다. 특히 제니퍼 뷰서버 자체가 무겁기 때문에 재시작이 오래 걸려 수정한 작업 내용을 확인하는데 어려움이 있었다. 그래서 제니퍼 뷰서버에 의존하지 않는 스프링부트 기반의 독립적인 플러그인 개발환경을 구상하게 되었다.
+제니퍼 서버 플러그인이란 개발자가 독립적인 개발 환경에서 구현할 수 있는 확장 기능이며, 현재는 페이지와 API 타입을 제공한다. 페이지 타입은 분석이나 통계 같은 화면 기능이고, API 타입은 Open API와 같이 특정 포맷의 데이터를 제공하는 기능이다. 주로 공식 기능으로 개발하기 전에 프로토타입 용도로 활용되고 있으며, 최근에는 다른 모니터링 솔루션과의 화면 연동을 하기 위해 사용되고 있다.
 
+### 버전 요구사항
 
-## IntelliJ에서 플러그인 프로젝트 생성하기
+본 문서는 제니퍼 서버 버전 5.4.0을 기준으로 작성되었다.
+
+## IntelliJ에서 플러그인 개발환경 구성하기
 
  1. File > New > Project 클릭
  2. Spring Initialzr > Project SDK 선택 (1.8) > Next 클릭
@@ -115,7 +118,7 @@ aries.output.css = app.css
 
 ### 플러그인 템플릿 생성하기
 
-템플릿 문법은 [Apache Velocity Engine](http://velocity.apache.org/engine/1.7/user-guide.html)를 따르며, ModelMap을 통해 뷰에서 사용할 매개변수 값을 넘겨줄 수 있다. 위에서 설명한 package.json에 설정된 mainTpl에서 다음과 같은 객체들을 참조할 수 있는데, 관련된 기능은 다음과 같이 정리된다.
+템플릿 문법은 [Apache Velocity Engine](http://velocity.apache.org/engine/1.7/user-guide.html)를 따르며, 스프링 컨트롤러의 Model 객체를 통해 뷰에서 사용할 값을 넘겨줄 수 있다. 템플릿에서는 다음과 같은 객체들을 참조할 수 있는데, 관련된 기능은 다음과 같이 정리된다.
 
 | 객체 이름 | 설명 |
 |:-------|-------|
@@ -124,7 +127,7 @@ aries.output.css = app.css
 | theme | classic 또는 dark 문자열이 넘어오며, 종류에 따라 화면 스타일을 분기할 때 사용할 수 있다. |
 | language | 제니퍼 뷰서버에서 설정한 다국어 타입 문자열이 넘어온다. |
 
-다음은 application.properties의 mainTpl에 설정된 vm 파일에 대한 샘플 코드이다.
+다음은 application.properties의 aries.main.tpl에 설정된 vm 파일에 대한 샘플 코드이다.
 
 ```xml
 // src/main/resources/static 디렉토리에 있는 리소스 파일을 로드하는 코드
@@ -149,6 +152,7 @@ import com.aries.extension.util.ConfigUtil;
 import com.aries.extension.util.LogUtil;
 import com.aries.extension.util.PropertyUtil;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -160,7 +164,7 @@ public class TutorialController extends PluginController {
 
     @RequestMapping(value = { "/tutorial" }, method = RequestMethod.GET)
     @ResponseBody
-    public ModelAndView getMainPage(@RequestParam(required=false, defaultValue="") String layout) {
+    public ModelAndView getMainPage(Model model, @RequestParam(required=false, defaultValue="") String layout) {
         // TODO: layout 매개변수에 따라 다른 템플릿을 적용한다.
         ModelAndView mav = new ModelAndView(layout.equals("iframe") ? "templates/iframe.vm" : "templates/main.vm");
 
@@ -180,6 +184,45 @@ public class TutorialController extends PluginController {
 
 기본적으로 컨트롤러의 뷰는 application.properties에 설정된 aries.main.tpl을 참조하는데, ModelAndView 클래스의 생성자 변수로 상황에 맞게 원하는 템플릿을 설정할 수 있다.
 
+### 플러그인 자바스크립트 API 사용하기
+
+Open API를 쉽게 조회할 수 있고, X-View 트랜잭션 분석 및 액티브 서비스 목록 팝업을 보여주는 API를 제공한다. 참고로 팝업의 종류는 앞으로 늘려나갈 예정이다.
+
+> 차후에는 제니퍼에서 제공하는 실시간 차트와 플러그인 페이지에 임포트 할 수 있는 자바스크립트 API를 제공할 예정이다.
+
+```javascript
+$(function() {
+    // TODO: 제니퍼 서버 주소와 API 사용시 토큰 값을 설정한다.
+    aries.extension.setup({
+        hostName: "https://dev.jennifersoft.com",
+        apiToken: "6tXrtSu5i8T"
+    });
+
+    $("#xview_popup").on("click", function(e) {
+        // TODO: 다이렉트로 제니퍼의 X-View 팝업을 띄우는 함수이다.
+        aries.extension.popup("xview", {
+            domainId: 7908,
+            txIds: [ "-6371365836736069843", "6541742202344215657", "-3416726780880622050" ],
+            startTime: 1535462614471,
+            endTime: 1535462614471
+        });
+    });
+
+    $("#active_popup").on("click", function(e) {
+        // TODO: 다이렉트로 제니퍼의 액티브서비스 팝업을 띄우는 함수이다.
+        aries.extension.popup("activeService", {
+            domainId: 7908
+        });
+    });
+    
+    // TODO: 제니퍼 Open API를 쉽게 조회할 수 있는 함수이다.
+    aries.extension.api("instance", {
+        domain_id: 7908
+    }, function(res) {
+        console.log(res);
+    });
+});
+```
 
 ## 플러그인 프로젝트 배포하기
 
@@ -199,3 +242,25 @@ COMMAND> java -jar 프로젝트명_local-버전.jar
 또는 VM 옵션을 통해 기본 테마와 언어를 설정할 수 있다.
 COMMAND> java -jar -Dtheme=dark,language=en 프로젝트명_local-버전.jar
 ~~~
+
+## 플러그인 기능 활용하기
+
+#### 1. Iframe 모드
+**/plugin/tutorial?layout=iframe**과 같이 페이지의 레이아웃을 설정할 수 있는데, 현재는 Iframe 타입만 제공한다. 레이아웃이 Iframe 타입일 때, 본문을 제외한 나머지 영역은 모두 제거된다.
+
+#### 2. 사용자정의 대시보드
+추가된 플러그인 페이지는 사용자정의 대시보드의 컴포넌트로 사용할 수 있는데, 앞에서 설명한 Iframe 모드로 플러그인을 추가한다.
+![이미지](https://raw.githubusercontent.com/jennifersoft/jennifer-extension-manuals/master/res/img/view_server_plugin_v3/2.png)
+![이미지](https://raw.githubusercontent.com/jennifersoft/jennifer-extension-manuals/master/res/img/view_server_plugin_v3/3.png)
+
+#### 3. 공유하기 URL
+페이지 타입의 플러그인은 로그인 인증이 된 상태에서만 접근할 수 있다. 하지만 공유하기 URL을 통해 로그인 인증을 거치지 않고, 플러그인 페이지로 접근이 가능하다.
+![이미지](https://raw.githubusercontent.com/jennifersoft/jennifer-extension-manuals/master/res/img/view_server_plugin_v3/1.png)
+
+## 참고 링크
+
+본 프로젝트의 프론트엔드 개발 환경은 웹팩 기반으로 구성되어 있기 때문에 모듈 번들링과 최신 자바스크립트 개발에 대한 사적 지식이 있다면 좀 더 편하게 플러그인을 개발할 수 있다. 
+
+[웹팩+스프링부트 기반의 프론트엔드 개발 환경 구축하기](https://medium.com/@alvin.h/%EC%9B%B9%ED%8C%A9-%EC%8A%A4%ED%94%84%EB%A7%81%EB%B6%80%ED%8A%B8-%EA%B8%B0%EB%B0%98%EC%9D%98-%ED%94%84%EB%A1%A0%ED%8A%B8%EC%97%94%EB%93%9C-%EA%B0%9C%EB%B0%9C-%ED%99%98%EA%B2%BD-%EA%B5%AC%EC%B6%95%ED%95%98%EA%B8%B0-87cd758e1eae)
+
+
