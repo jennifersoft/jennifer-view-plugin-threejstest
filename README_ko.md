@@ -118,7 +118,7 @@ aries.output.css = app.css
 
 ### 플러그인 템플릿 생성하기
 
-템플릿 문법은 [Apache Velocity Engine](http://velocity.apache.org/engine/1.7/user-guide.html)를 따르며, ModelMap을 통해 뷰에서 사용할 매개변수 값을 넘겨줄 수 있다. 위에서 설명한 package.json에 설정된 mainTpl에서 다음과 같은 객체들을 참조할 수 있는데, 관련된 기능은 다음과 같이 정리된다.
+템플릿 문법은 [Apache Velocity Engine](http://velocity.apache.org/engine/1.7/user-guide.html)를 따르며, 스프링 컨트롤러의 Model 객체를 통해 뷰에서 사용할 값을 넘겨줄 수 있다. 템플릿에서는 다음과 같은 객체들을 참조할 수 있는데, 관련된 기능은 다음과 같이 정리된다.
 
 | 객체 이름 | 설명 |
 |:-------|-------|
@@ -127,7 +127,7 @@ aries.output.css = app.css
 | theme | classic 또는 dark 문자열이 넘어오며, 종류에 따라 화면 스타일을 분기할 때 사용할 수 있다. |
 | language | 제니퍼 뷰서버에서 설정한 다국어 타입 문자열이 넘어온다. |
 
-다음은 application.properties의 mainTpl에 설정된 vm 파일에 대한 샘플 코드이다.
+다음은 application.properties의 aries.main.tpl에 설정된 vm 파일에 대한 샘플 코드이다.
 
 ```xml
 // src/main/resources/static 디렉토리에 있는 리소스 파일을 로드하는 코드
@@ -152,6 +152,7 @@ import com.aries.extension.util.ConfigUtil;
 import com.aries.extension.util.LogUtil;
 import com.aries.extension.util.PropertyUtil;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -163,7 +164,7 @@ public class TutorialController extends PluginController {
 
     @RequestMapping(value = { "/tutorial" }, method = RequestMethod.GET)
     @ResponseBody
-    public ModelAndView getMainPage(@RequestParam(required=false, defaultValue="") String layout) {
+    public ModelAndView getMainPage(Model model, @RequestParam(required=false, defaultValue="") String layout) {
         // TODO: layout 매개변수에 따라 다른 템플릿을 적용한다.
         ModelAndView mav = new ModelAndView(layout.equals("iframe") ? "templates/iframe.vm" : "templates/main.vm");
 
