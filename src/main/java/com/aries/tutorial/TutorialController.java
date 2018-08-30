@@ -19,15 +19,19 @@ public class TutorialController extends PluginController {
     @ResponseBody
     public ModelAndView getMainPage(Model model, @RequestParam(required=false, defaultValue="") String layout) {
         // TODO: layout 매개변수에 따라 다른 템플릿을 적용한다.
+        // Apply a different template according to the layout parameter.
         ModelAndView mav = new ModelAndView(layout.equals("iframe") ? "templates/iframe.vm" : "templates/main.vm");
 
         // TODO: 어댑터 & 실험실 관리 화면에서 추가한 플러그인에 대한 옵션을 가져올 수 있다.
+        // Retrieve an option set in the  Adapter and Plugin screen
         String property = PropertyUtil.getValue("plugin_tutorial", "db_path", "../db_path_property");
 
         // TODO: server_view.conf 파일에 설정된 뷰서버 옵션을 가져올 수 있다.
+        // Retrieve a view server option set in server_view.conf file
         String config = ConfigUtil.getValue("db_path", "../db_path_config");
 
         // TODO: 플러그인의 로그를 남기는 유틸리티 클래스를 제공한다.
+        // Utility class used for loggin
         LogUtil.info(property + ", " + config);
 
         return mav;
