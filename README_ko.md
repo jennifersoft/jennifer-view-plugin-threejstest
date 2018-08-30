@@ -257,6 +257,14 @@ COMMAND> java -jar -Dtheme=dark,language=en 프로젝트명_local-버전.jar
 페이지 타입의 플러그인은 로그인 인증이 된 상태에서만 접근할 수 있다. 하지만 공유하기 URL을 통해 로그인 인증을 거치지 않고, 플러그인 페이지로 접근이 가능하다.
 ![이미지](https://raw.githubusercontent.com/jennifersoft/jennifer-extension-manuals/master/res/img/view_server_plugin_v3/1.png)
 
+## 플러그인에서 사용 중인 라이브러리
+
+### 서버
+Jetty-9.2.24, Spring-4.3.8, logback-1.0.13
+
+### 클라이언트
+jquery-2.0.2, moment-2.8.4, lodash-1.3.1, jui-2.0.4
+
 ## 참고 링크
 
 본 프로젝트의 프론트엔드 개발 환경은 웹팩 기반으로 구성되어 있기 때문에 모듈 번들링과 최신 자바스크립트 개발에 대한 사적 지식이 있다면 좀 더 편하게 플러그인을 개발할 수 있다. 
