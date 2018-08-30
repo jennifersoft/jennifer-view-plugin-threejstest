@@ -125,7 +125,7 @@ aries.output.css = app.css
 | file | src/main/resources/static 디렉토리에 있는 리소스 파일들을 참조할 수 있다. |
 | i18n | src/main/resources/* 디렉토리 내에 추가된 i18n 메시지들을 참조할 수 있다. |
 | theme | classic 또는 dark 문자열이 넘어오며, 종류에 따라 화면 스타일을 분기할 때 사용할 수 있다. |
-| language | 제니퍼 뷰서버에서 설정한 다국어 타입 문자열이 넘어온다. |
+| language | 제니퍼 서버에서 설정한 다국어 타입 문자열이 넘어온다. |
 
 다음은 application.properties의 aries.main.tpl에 설정된 vm 파일에 대한 샘플 코드이다.
 
@@ -171,7 +171,7 @@ public class TutorialController extends PluginController {
         // TODO: 어댑터 & 실험실 관리 화면에서 추가한 플러그인에 대한 옵션을 가져올 수 있다.
         String property = PropertyUtil.getValue("tutorial", "db_path", "../db_path_property");
 
-        // TODO: server_view.conf 파일에 설정된 뷰서버 옵션을 가져올 수 있다.
+        // TODO: server_view.conf 파일에 설정된 제니퍼 서버 옵션을 가져올 수 있다.
         String config = ConfigUtil.getValue("db_path", "../db_path_config");
 
         // TODO: 플러그인의 로그를 남기는 유틸리티 클래스를 제공한다.
@@ -228,7 +228,7 @@ $(function() {
 
 다음과 같이 두가지 형태로 빌드하여 배포할 수 있다.
 
-### 제니퍼 뷰서버에 실험실로 로드되는 jar 파일로 배포하기
+### 제니퍼에 실험실로 로드되는 jar 파일로 배포하기
 
 메이븐 프로젝트의 jennifer 프로파일을 선택해서 인스톨하면, dist 디렉토리에 **프로젝트명_jennifer-버전.jar** 파일이 생성된다. 해당 jar 파일은 제니퍼5 어댑터 및 실험실 관리화면을 통해 추가할 수 있다.
 
@@ -257,13 +257,14 @@ COMMAND> java -jar -Dtheme=dark,language=en 프로젝트명_local-버전.jar
 페이지 타입의 플러그인은 로그인 인증이 된 상태에서만 접근할 수 있다. 하지만 공유하기 URL을 통해 로그인 인증을 거치지 않고, 플러그인 페이지로 접근이 가능하다.
 ![이미지](https://raw.githubusercontent.com/jennifersoft/jennifer-extension-manuals/master/res/img/view_server_plugin_v3/1.png)
 
-## 플러그인에서 사용 중인 라이브러리
+## 사용 중인 라이브러리
 
 ### 서버
-Jetty-9.2.24, Spring-4.3.8, logback-1.0.13
+> Jetty-9.2.24, Spring-4.3.8, logback-1.0.13
 
 ### 클라이언트
-jquery-2.0.2, moment-2.8.4, lodash-1.3.1, jui-2.0.4
+최대한 의존성을 없애고자 했으나 제니퍼에서 실행될 때, 사용할 수 있는 제니퍼 기능들 때문에 부득이하게 로드하는 라이브러리이다.
+> jquery-2.0.2, moment-2.8.4, lodash-1.3.1, jui-2.0.4
 
 ## 참고 링크
 
