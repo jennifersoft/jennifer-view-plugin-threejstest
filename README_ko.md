@@ -231,7 +231,7 @@ $(function() {
 ~~~bash
 COMMAND> npm install
 
-클라이언트 개발 서버를 띄우기 위한 명령어, 자세한 사항은 webpack.config.js 파일을 참고하면 되고, 웹팩에 대한 기본 지식이 있어야 한다. 관련해서는 참고 링크를 확인하자.
+클라이언트 개발 서버를 띄우기 위한 명령어 (webpack.config.js 파일 참고)
 COMMAND> npm start
 
 최종 번들링된 파일들을 배포하기 위한 명령어
