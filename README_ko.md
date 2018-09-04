@@ -226,8 +226,18 @@ $(function() {
 
 ### 플러그인 클라이언트 번들링하기
 
-클라이언트 개발에 필요한 자바스크립트/스타일 코드나 이미지 같은 리소스들은 src/main/client 디렉토리에 존재하며, 플러그인 프로젝트 배포하기 전에 최종 번들링된 파일들을 src/main/resources/static 디렉토리로 옮겨야 한다.
+클라이언트 개발에 필요한 자바스크립트 코드나 이미지 같은 리소스들은 src/main/client 디렉토리에 존재하며, 플러그인 프로젝트 배포하기 전에 최종 번들링된 파일들을 src/main/resources/static 디렉토리로 옮겨야 한다. package.json 파일을 보면 개발 및 배포할 때 사용할 수 있는 NPM 명령어들을 정의해두었다.
 
+~~~bash
+클라이언트 개발환경 설정을 위해 실행해야 하는 명령어
+COMMAND> npm install
+
+클라이언트 개발 서버를 띄우기 위한 명령어
+COMMAND> npm start
+
+최종 번들링된 파일들을 배포하기 위한 명령어
+COMMAND> npm run dist
+~~~
 
 ## 플러그인 프로젝트 배포하기
 
