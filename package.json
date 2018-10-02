@@ -20,6 +20,7 @@
     "webpack-dev-server": "^3.1.5"
   },
   "dependencies": {
+    "aries-extension-js": "0.0.2",
     "jquery": "^3.3.1",
     "three": "^0.93.0"
   }
