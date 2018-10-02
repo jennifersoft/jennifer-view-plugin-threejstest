@@ -125,7 +125,7 @@ aries.output.css = app.css
 | file | src/main/resources/static 디렉토리에 있는 리소스 파일들을 참조할 수 있다. |
 | i18n | src/main/resources/* 디렉토리 내에 추가된 i18n 메시지들을 참조할 수 있다. |
 | theme | classic 또는 dark 문자열이 넘어오며, 종류에 따라 화면 스타일을 분기할 때 사용할 수 있다. |
-| language | 제니퍼 뷰서버에서 설정한 다국어 타입 문자열이 넘어온다. |
+| language | 제니퍼 서버에서 설정한 다국어 타입 문자열이 넘어온다. |
 
 다음은 application.properties의 aries.main.tpl에 설정된 vm 파일에 대한 샘플 코드이다.
 
@@ -171,7 +171,7 @@ public class TutorialController extends PluginController {
         // TODO: 어댑터 & 실험실 관리 화면에서 추가한 플러그인에 대한 옵션을 가져올 수 있다.
         String property = PropertyUtil.getValue("tutorial", "db_path", "../db_path_property");
 
-        // TODO: server_view.conf 파일에 설정된 뷰서버 옵션을 가져올 수 있다.
+        // TODO: server_view.conf 파일에 설정된 제니퍼 서버 옵션을 가져올 수 있다.
         String config = ConfigUtil.getValue("db_path", "../db_path_config");
 
         // TODO: 플러그인의 로그를 남기는 유틸리티 클래스를 제공한다.
@@ -224,11 +224,25 @@ $(function() {
 });
 ```
 
+### 플러그인 클라이언트 번들링하기
+
+클라이언트 개발에 필요한 자바스크립트 코드나 이미지 같은 리소스들은 src/main/client 디렉토리에 존재하며, 플러그인 프로젝트를 배포하기 전에 최종 번들링된 파일들을 src/main/resources/static 디렉토리로 옮겨야 한다. package.json 파일을 보면 개발 및 배포할 때 사용할 수 있는 NPM 명령어들을 정의해두었다.
+
+~~~bash
+COMMAND> npm install
+
+클라이언트 개발 서버를 띄우기 위한 명령어 (webpack.config.js 파일 참고)
+COMMAND> npm start
+
+최종 번들링된 파일들을 배포하기 위한 명령어
+COMMAND> npm run dist
+~~~
+
 ## 플러그인 프로젝트 배포하기
 
 다음과 같이 두가지 형태로 빌드하여 배포할 수 있다.
 
-### 제니퍼 뷰서버에 실험실로 로드되는 jar 파일로 배포하기
+### 제니퍼에 실험실로 로드되는 jar 파일로 배포하기
 
 메이븐 프로젝트의 jennifer 프로파일을 선택해서 인스톨하면, dist 디렉토리에 **프로젝트명_jennifer-버전.jar** 파일이 생성된다. 해당 jar 파일은 제니퍼5 어댑터 및 실험실 관리화면을 통해 추가할 수 있다.
 
@@ -257,9 +271,19 @@ COMMAND> java -jar -Dtheme=dark,language=en 프로젝트명_local-버전.jar
 페이지 타입의 플러그인은 로그인 인증이 된 상태에서만 접근할 수 있다. 하지만 공유하기 URL을 통해 로그인 인증을 거치지 않고, 플러그인 페이지로 접근이 가능하다.
 ![이미지](https://raw.githubusercontent.com/jennifersoft/jennifer-extension-manuals/master/res/img/view_server_plugin_v3/1.png)
 
+## 사용 중인 라이브러리
+
+### 서버
+사실 더 많은 라이브러리를 제니퍼 서버에서 사용하지만 메이븐 빌드시 중첩되는 라이브러리는 모두 제거해준다. 그래서 본 프로젝트에서 배포하는 [pom.xml](https://github.com/jennifersoft/jennifer-view-plugin-tutorial/blob/master/pom.xml) 파일을 잘 기억해두자.
+> Jetty-9.2.24, Spring-4.3.8, logback-1.0.13
+
+### 클라이언트
+플러그인이 제니퍼 서버에서 실행될 때, 관리 화면 같은 일부 기능이 동작해야하므로 부득이하게 글로벌 의존성을 가지는 라이브러리가 필요하다.
+> jquery-2.0.2, moment-2.8.4, lodash-1.3.1, jui-2.0.4
+
 ## 참고 링크
 
-본 프로젝트의 프론트엔드 개발 환경은 웹팩 기반으로 구성되어 있기 때문에 모듈 번들링과 최신 자바스크립트 개발에 대한 사적 지식이 있다면 좀 더 편하게 플러그인을 개발할 수 있다. 
+본 프로젝트의 프론트엔드 개발 환경은 웹팩 기반으로 구성되어 있기 때문에 모듈 번들링과 최신 자바스크립트 개발에 대한 사전 지식이 있다면 좀 더 편하게 플러그인을 개발할 수 있다. 
 
 [웹팩+스프링부트 기반의 프론트엔드 개발 환경 구축하기](https://medium.com/@alvin.h/%EC%9B%B9%ED%8C%A9-%EC%8A%A4%ED%94%84%EB%A7%81%EB%B6%80%ED%8A%B8-%EA%B8%B0%EB%B0%98%EC%9D%98-%ED%94%84%EB%A1%A0%ED%8A%B8%EC%97%94%EB%93%9C-%EA%B0%9C%EB%B0%9C-%ED%99%98%EA%B2%BD-%EA%B5%AC%EC%B6%95%ED%95%98%EA%B8%B0-87cd758e1eae)
 

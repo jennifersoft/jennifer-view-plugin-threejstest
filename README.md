@@ -10,8 +10,8 @@ This repository contains Plugin development guides and sample code for creating 
 
 ## Guides 
 
-* [Plugin Developer Korean Guide](./README_ko.md)
-* [Plugin Developer English Guide](./README_en.md)
+* [Plugin Developer Guide](./README_ko.md) [Korean]
+* [Plugin Developer Guide](./README_en.md) [English]
 
 ## Getting started
 
