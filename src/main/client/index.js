@@ -39,6 +39,6 @@ $(function() {
     extension.api("instance", {
         domain_id: 7908
     }, function(res) {
-        console.log(res);
+        console.log("JENNIFER API", res);
     });
 });

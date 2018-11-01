@@ -1,5 +1,6 @@
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const MiniCssExtractPlugin = require("mini-css-extract-plugin")
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 module.exports = (env) => {
     let path = require('path')
@@ -8,26 +9,15 @@ module.exports = (env) => {
 
     return {
         mode: env,
+        devtool: env == 'production' ? false : 'cheap-module-eval-source-map',
         entry: {
-            vendors: [ 'three' ],
             app: clientPath + '/index.js'
         },
         output: {
             path: outputPath,
             filename: '[name].js',
         },
-        externals: {
-            jquery: 'jQuery',
-            moment: 'moment',
-            lodash: '_',
-            'juijs': 'jui',
-            'juijs-ui': 'jui',
-            'juijs-grid': 'jui',
-            'juijs-chart': 'jui'
-        },
         optimization: {
-            namedModules: true,
-            runtimeChunk: 'single',
             splitChunks: {
                 chunks: 'all',
                 cacheGroups: {
@@ -47,7 +37,7 @@ module.exports = (env) => {
                 use: [{
                     loader: 'babel-loader',
                     options: {
-                        presets: [ 'es2015' ]
+                        presets: [ 'env' ]
                     }
                 }]
             }, {
@@ -82,6 +72,8 @@ module.exports = (env) => {
                 path: outputPath,
                 filename: '[name].css'
             })
-        ]
+        ].concat(env == 'production' ? [
+            new BundleAnalyzerPlugin()
+        ] : [])
     }
 }
