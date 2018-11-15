@@ -5,7 +5,7 @@
 
 	<groupId>com.aries</groupId>
 	<artifactId>plugin-tutorial</artifactId>
-	<version>1.2.0</version>
+	<version>1.2.1</version>
 	<packaging>jar</packaging>
 
 	<name>aries-plugin-tutorial</name>
@@ -51,7 +51,7 @@
 		<dependency>
 			<groupId>com.aries</groupId>
 			<artifactId>extension</artifactId>
-			<version>1.2.0</version>
+			<version>1.2.1</version>
 		</dependency>
 	</dependencies>
 
