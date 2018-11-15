@@ -9,5 +9,6 @@ module.exports = {
     ],
     "moduleNameMapper": {
         "@/(.*)$": "<rootDir>/src/main/client/$1"
-    }
+    },
+    "transformIgnorePatterns": []
 }

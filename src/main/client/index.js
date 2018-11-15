@@ -41,4 +41,9 @@ $(function() {
     }, function(res) {
         console.log("JENNIFER API", res);
     });
+
+    // TODO: 제니퍼에서 보낸 메시지 (도메인 데이터)
+    extension.on("domainbox", function(id) {
+        console.log("JENNIFER Domain ID", id);
+    });
 });
