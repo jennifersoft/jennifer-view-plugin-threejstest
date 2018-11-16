@@ -35,15 +35,18 @@ $(function() {
         });
     });
 
-    // TODO: 제니퍼 Open API를 쉽게 조회할 수 있는 함수이다.
-    extension.api("instance", {
-        domain_id: 7908
-    }, function(res) {
-        console.log("JENNIFER API", res);
-    });
-
     // TODO: 제니퍼에서 보낸 메시지 (도메인 데이터)
     extension.on("domain", function(id) {
         console.log("JENNIFER Domain ID", id);
+
+        // TODO: 제니퍼 Open API를 쉽게 조회할 수 있는 함수이다.
+        extension.api("instance", {
+            domain_id: id
+        }, function(res) {
+            console.log("JENNIFER API", res);
+        });
     });
+
+    // TODO: 커스텀 이벤트 발생시키기
+    extension.emit("domain", 7908);
 });
