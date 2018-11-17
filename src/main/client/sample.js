@@ -5,13 +5,13 @@ export default function() {
     var scene = new Scene();
 
     // create a camera, which defines where we're looking at.
-    var camera = new PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
+    var camera = new PerspectiveCamera(45, window.innerWidth / 300, 0.1, 1000);
 
     // create a render and set the size
     var renderer = new WebGLRenderer();
     // renderer.setClearColorHex();
     renderer.setClearColor(new Color(0xEEEEEE));
-    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setSize(window.innerWidth, 300);
 
     // show axes in the screen
     var axes = new AxisHelper(20);

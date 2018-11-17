@@ -4,13 +4,7 @@ import $ from 'jquery'
 import extension from 'aries-extension-js'
 
 $(function() {
-    let threeObj = createSampleChart();
-
-    $(window).on("resize", function(e) {
-        threeObj.camera.aspect = window.innerWidth / window.innerHeight;
-        threeObj.camera.updateProjectionMatrix();
-        threeObj.renderer.setSize(window.innerWidth, window.innerHeight);
-    });
+    createSampleChart();
 
     // TODO: 제니퍼 서버 주소와 API 사용시 토큰 값을 설정한다.
     extension.setup({
@@ -49,4 +43,14 @@ $(function() {
 
     // TODO: 커스텀 이벤트 발생시키기
     extension.emit("domain", 7908);
+
+    // 컨텐츠 영역 늘리기
+    $("#btn_upsizing").on("click", function() {
+        $("#tutorial-main").append("<div class='row block' style='height: 50px; background: #dcdcdc;'></div>");
+    });
+
+    // 컨텐츠 영역 줄이기
+    $("#btn_downsizing").on("click", function() {
+        $("#tutorial-main").find(".row.block:last-child").remove();
+    });
 });

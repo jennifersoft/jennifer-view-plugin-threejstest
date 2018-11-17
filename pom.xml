@@ -4,12 +4,12 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.aries</groupId>
-	<artifactId>plugin-tutorial</artifactId>
+	<artifactId>plugin-management</artifactId>
 	<version>1.2.1</version>
 	<packaging>jar</packaging>
 
-	<name>aries-plugin-tutorial</name>
-	<description>JENNIFER Plug-in Tutorial</description>
+	<name>aries-plugin-management</name>
+	<description>JENNIFER Plug-in Management</description>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
