@@ -3,9 +3,9 @@
         <i></i> <span class="$theme">$i18n.get("title")</span>
 
         <div class="group">
-            <span class="label small">$i18n.get("label.title")</span>
-            <a class="btn small" id="xview_popup">$i18n.get("btn.xview")</a>
-            <a class="btn small" id="active_popup">$i18n.get("btn.active")</a>
+            <span>$i18n.get("label.title")</span>
+            <button id="xview_popup">$i18n.get("btn.xview")</button>
+            <button id="active_popup">$i18n.get("btn.active")</button>
         </div>
     </div>
 
