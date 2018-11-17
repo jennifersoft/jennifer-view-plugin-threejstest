@@ -7,13 +7,13 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 @SpringBootApplication
-public class DashboardApplication extends WebMvcConfigurerAdapter {
+public class PluginDashboardApplication extends WebMvcConfigurerAdapter {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(new PluginStarter()).addPathPatterns("/plugin/**");
     }
 
     public static void main(String[] args) {
-        SpringApplication.run(DashboardApplication.class, args);
+        SpringApplication.run(PluginDashboardApplication.class, args);
     }
 }

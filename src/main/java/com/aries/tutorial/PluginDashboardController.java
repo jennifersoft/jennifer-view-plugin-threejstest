@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-public class DashboardController extends PluginController {
+public class PluginDashboardController extends PluginController {
 
     @RequestMapping(value = { "/dashboard" }, method = RequestMethod.GET)
     @ResponseBody
