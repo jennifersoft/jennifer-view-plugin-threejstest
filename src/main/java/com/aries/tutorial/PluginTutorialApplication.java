@@ -7,13 +7,13 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 @SpringBootApplication
-public class TutorialApplication extends WebMvcConfigurerAdapter {
+public class PluginTutorialApplication extends WebMvcConfigurerAdapter {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(new PluginStarter()).addPathPatterns("/plugin/**");
     }
 
     public static void main(String[] args) {
-        SpringApplication.run(TutorialApplication.class, args);
+        SpringApplication.run(PluginTutorialApplication.class, args);
     }
 }

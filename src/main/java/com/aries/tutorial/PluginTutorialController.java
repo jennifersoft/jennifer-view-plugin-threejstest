@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-public class TutorialController extends PluginController {
+public class PluginTutorialController extends PluginController {
 
     @RequestMapping(value = { "/tutorial" }, method = RequestMethod.GET)
     @ResponseBody
