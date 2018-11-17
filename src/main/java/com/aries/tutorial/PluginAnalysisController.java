@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-public class AnalysisController extends PluginController {
+public class PluginAnalysisController extends PluginController {
 
     @RequestMapping(value = { "/analysis" }, method = RequestMethod.GET)
     @ResponseBody
