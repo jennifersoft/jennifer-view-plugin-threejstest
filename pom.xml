@@ -4,11 +4,11 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.aries</groupId>
-	<artifactId>plugin-management</artifactId>
+	<artifactId>plugin-analysis</artifactId>
 	<version>1.2.1</version>
 	<packaging>jar</packaging>
 
-	<name>aries-plugin-management</name>
+	<name>aries-plugin-analysis</name>
 	<description>JENNIFER Plug-in Management</description>
 
 	<properties>
