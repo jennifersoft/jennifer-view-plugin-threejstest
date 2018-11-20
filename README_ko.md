@@ -4,7 +4,7 @@
 
 ### 버전 요구사항
 
-본 문서는 제니퍼 서버 버전 5.4.0을 기준으로 작성되었다.
+본 문서는 제니퍼 서버 버전 5.4.1을 기준으로 작성되었다.
 
 ## IntelliJ에서 플러그인 개발환경 구성하기
 
@@ -290,8 +290,8 @@ COMMAND> java -jar -Dtheme=dark,language=en 프로젝트명_local-버전.jar
 
 ### 클라이언트
 Iframe 모드를 사용하거나 제니퍼 화면에 추가할 때는 아무것도 로드하지 않는다.
-> 1. Public Library: jquery.js, jui-ui.css, jui-grid.css
-> 2. JENNIFER Library: aries.util.js, ClientDef.js
+> jquery.js, jui-ui.css, jui-grid.css
+
 
 ## 참고 링크
 
