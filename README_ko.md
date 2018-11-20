@@ -286,7 +286,7 @@ COMMAND> java -jar -Dtheme=dark,language=en 프로젝트명_local-버전.jar
 
 ### 서버
 사실 더 많은 라이브러리를 제니퍼 서버에서 사용하지만 메이븐 빌드시 중첩되는 라이브러리는 모두 제거해준다. 그래서 본 프로젝트에서 배포하는 [pom.xml](https://github.com/jennifersoft/jennifer-view-plugin-tutorial/blob/master/pom.xml) 파일을 잘 기억해두자.
-> Jetty-9.2.24, Spring-4.3.8, logback-1.0.13
+> Jetty9, Spring4, Logback
 
 ### 클라이언트
 Iframe 모드를 사용하거나 제니퍼 화면에 추가할 때는 아무것도 로드하지 않는다.
