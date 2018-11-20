@@ -41,7 +41,7 @@
 	<dependency>
 		<groupId>com.aries</groupId>
 		<artifactId>extension</artifactId>
-		<version>1.1.0</version>
+		<version>1.2.1</version>
 	</dependency>
 </dependencies>
 ```
@@ -61,7 +61,7 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 @SpringBootApplication
-public class TutorialApplication extends WebMvcConfigurerAdapter {
+public class PluginTutorialApplication extends WebMvcConfigurerAdapter {
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
 		// PluginStarter 클래스를 스프링 기본 인터셉터로 추가한다.
@@ -161,7 +161,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-public class TutorialController extends PluginController {
+public class PluginTutorialController extends PluginController {
 
     @RequestMapping(value = { "/tutorial" }, method = RequestMethod.GET)
     @ResponseBody
