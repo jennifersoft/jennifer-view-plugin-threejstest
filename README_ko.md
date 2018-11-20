@@ -189,19 +189,20 @@ public class PluginTutorialController extends PluginController {
 
 Open API를 쉽게 조회할 수 있고, X-View 트랜잭션 분석 및 액티브 서비스 목록 팝업을 보여주는 API를 제공한다. 참고로 팝업의 종류는 앞으로 늘려나갈 예정이다.
 
-> 차후에는 제니퍼에서 제공하는 실시간 차트와 플러그인 페이지에 임포트 할 수 있는 자바스크립트 API를 제공할 예정이다.
-
 ```javascript
+import $ from 'jquery'
+import extension from 'aries-extension-js'
+
 $(function() {
     // TODO: 제니퍼 서버 주소와 API 사용시 토큰 값을 설정한다.
-    aries.extension.setup({
+    extension.setup({
         hostName: "https://dev.jennifersoft.com",
         apiToken: "6tXrtSu5i8T"
     });
 
     $("#xview_popup").on("click", function(e) {
         // TODO: 다이렉트로 제니퍼의 X-View 팝업을 띄우는 함수이다.
-        aries.extension.popup("xview", {
+        extension.popup("xview", {
             domainId: 7908,
             txIds: [ "-6371365836736069843", "6541742202344215657", "-3416726780880622050" ],
             startTime: 1535462614471,
@@ -211,19 +212,35 @@ $(function() {
 
     $("#active_popup").on("click", function(e) {
         // TODO: 다이렉트로 제니퍼의 액티브서비스 팝업을 띄우는 함수이다.
-        aries.extension.popup("activeService", {
+        extension.popup("activeService", {
             domainId: 7908
         });
     });
     
     // TODO: 제니퍼 Open API를 쉽게 조회할 수 있는 함수이다.
-    aries.extension.api("instance", {
+    extension.api("instance", {
         domain_id: 7908
     }, function(res) {
         console.log(res);
     });
 });
 ```
+
+#### 도메인박스 선택시 이벤트 핸들링하기
+제니퍼 화면에는 도메인박스라는 공통 컴포넌트가 있는데, 도메인 선택시 아래 메소드를 통해 선택한 도메인 아이디를 참조할 수 있다.
+~~~javascript
+    // TODO: 제니퍼에서 보낸 메시지 (도메인 데이터)
+    extension.on("domain", function(id) {
+        extension.api("instance", {
+            domain_id: id
+        }, function(res) {
+            console.log("JENNIFER API", res);
+        });
+    });
+
+    // TODO: 커스텀 이벤트 발생시키기
+    extension.emit("domain", 7908);
+~~~
 
 ### 플러그인 클라이언트 번들링하기
 
