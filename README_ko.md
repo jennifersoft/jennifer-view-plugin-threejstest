@@ -275,9 +275,9 @@ COMMAND> java -jar -Dtheme=dark,language=en 프로젝트명_local-버전.jar
 #### 4. 제니퍼 화면에 추가하기
 **aries.menu.type** 옵션을 사용하면 제니퍼 실험실 외에도 대시보드, 리얼타임, 분석, 통계, 관리 화면에 플러그인을 추가할 수 있으며, Iframe 모드로 추가된다. 참고로 메뉴 타입이 대시보드와 리얼타임일 때는 화면에 스크롤이 생기지 않으며 컨텐츠 영역의 크기가 가로/세로 100%라고 가정하고 개발해야 한다.
 
-![이미지](https://raw.githubusercontent.com/jennifersoft/jennifer-extension-manuals/master/res/img/view_server_plugin_v3/4.png)
-![이미지](https://raw.githubusercontent.com/jennifersoft/jennifer-extension-manuals/master/res/img/view_server_plugin_v3/5.png)
-![이미지](https://raw.githubusercontent.com/jennifersoft/jennifer-extension-manuals/master/res/img/view_server_plugin_v3/6.png)
+![대시보드/리얼타임](https://raw.githubusercontent.com/jennifersoft/jennifer-extension-manuals/master/res/img/view_server_plugin_v3/4.png "대시보드/리얼타임")
+![분석/통계](https://raw.githubusercontent.com/jennifersoft/jennifer-extension-manuals/master/res/img/view_server_plugin_v3/5.png "분석/통계")
+![관리](https://raw.githubusercontent.com/jennifersoft/jennifer-extension-manuals/master/res/img/view_server_plugin_v3/6.png "관리")
 
 ## 사용 중인 라이브러리
 
