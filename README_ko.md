@@ -82,9 +82,10 @@ public class PluginTutorialApplication extends WebMvcConfigurerAdapter {
 ```
 aries.title = Plugin Tutorial
 aries.description = JENNIFER Plug-in development tutorial page
-aries.version = 5.4.0
+aries.version = 5.4.1
 aries.main.url = /plugin/tutorial
 aries.main.tpl = templates/index.vm
+aries.menu.type = labs
 aries.directory.i18n = i18n
 aries.directory.thumbnail = thumbnails
 aries.output.js = runtime.js, vendors.js, app.js
