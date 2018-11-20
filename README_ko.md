@@ -278,7 +278,7 @@ COMMAND> java -jar -Dtheme=dark,language=en 프로젝트명_local-버전.jar
 ![이미지](https://raw.githubusercontent.com/jennifersoft/jennifer-extension-manuals/master/res/img/view_server_plugin_v3/5.png "분석/통계")
 ![이미지](https://raw.githubusercontent.com/jennifersoft/jennifer-extension-manuals/master/res/img/view_server_plugin_v3/6.png "관리")
 
-> 플러그인 화면 타입은 다음과 같은 제약사항이 있으니 개발할 때, 참고하길 바란다.
+> 플러그인 메뉴 타입은 다음과 같은 제약사항이 있으니 개발할 때, 참고하길 바란다.
 > 1. 공유하기 URL 기능을 사용할 수 없다.
 > 2. Iframe 모드로만 동작한다.
 
@@ -289,8 +289,8 @@ COMMAND> java -jar -Dtheme=dark,language=en 프로젝트명_local-버전.jar
 > Jetty-9.2.24, Spring-4.3.8, logback-1.0.13
 
 ### 클라이언트
-플러그인이 제니퍼 서버에서 실행될 때, 관리 화면 같은 일부 기능이 동작해야하므로 부득이하게 글로벌 의존성을 가지는 라이브러리가 필요하다.
-> jquery-2.0.2, moment-2.8.4, lodash-1.3.1, jui-2.0.4
+Iframe 모드를 사용하거나 제니퍼 화면에 추가할 때는 아무것도 로드하지 않는다.
+> jquery.js, jui-ui.css, jui-grid.css
 
 ## 참고 링크
 
