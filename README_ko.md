@@ -290,8 +290,8 @@ COMMAND> java -jar -Dtheme=dark,language=en 프로젝트명_local-버전.jar
 
 ### 클라이언트
 Iframe 모드를 사용하거나 제니퍼 화면에 추가할 때는 아무것도 로드하지 않는다.
-> Public Library: jquery.js, jui-ui.css, jui-grid.css.
-> JENNIFER Library: aries.util.js, ClientDef.js.
+> 1. Public Library: jquery.js, jui-ui.css, jui-grid.css
+> 2. JENNIFER Library: aries.util.js, ClientDef.js
 
 ## 참고 링크
 
