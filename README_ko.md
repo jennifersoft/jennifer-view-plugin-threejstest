@@ -278,7 +278,7 @@ COMMAND> java -jar -Dtheme=dark,language=en 프로젝트명_local-버전.jar
 ![이미지](https://raw.githubusercontent.com/jennifersoft/jennifer-extension-manuals/master/res/img/view_server_plugin_v3/5.png "분석/통계")
 ![이미지](https://raw.githubusercontent.com/jennifersoft/jennifer-extension-manuals/master/res/img/view_server_plugin_v3/6.png "관리")
 
-> 플러그인 화면 타입은 다음과 같은 제약사항이 있으니 개발시 참고하길 바란다.
+> 플러그인 화면 타입은 다음과 같은 제약사항이 있으니 개발할 때, 참고하길 바란다.
 > 1. 공유하기 URL 기능을 사용할 수 없다.
 > 2. Iframe 모드로만 동작한다.
 
