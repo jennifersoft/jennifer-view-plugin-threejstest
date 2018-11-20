@@ -278,7 +278,9 @@ COMMAND> java -jar -Dtheme=dark,language=en 프로젝트명_local-버전.jar
 ![이미지](https://raw.githubusercontent.com/jennifersoft/jennifer-extension-manuals/master/res/img/view_server_plugin_v3/5.png "분석/통계")
 ![이미지](https://raw.githubusercontent.com/jennifersoft/jennifer-extension-manuals/master/res/img/view_server_plugin_v3/6.png "관리")
 
-> 플러그인 화면 타입은 Iframe 모드로만 동작하기 때문에 기본적으로 로드되는 스크립트나 스타일이 없다. 그리고 공유하기 URL을 사용할 수 없다.
+> 플러그인 화면 타입은 다음과 같은 제약사항이 있다.
+> 1. 공유하기 URL 기능을 사용할 수 없다.
+> 2. Iframe 모드로만 동작한다.
 
 ## 사용 중인 라이브러리
 
