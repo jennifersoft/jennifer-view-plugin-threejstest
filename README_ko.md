@@ -228,6 +228,7 @@ $(function() {
 
 #### 도메인박스 선택시 이벤트 핸들링하기
 제니퍼 화면에는 도메인박스라는 공통 컴포넌트가 있는데, 도메인 선택시 아래 메소드를 통해 선택한 도메인 아이디를 참조할 수 있다.
+
 ~~~javascript
     // TODO: 제니퍼에서 보낸 메시지 (도메인 데이터)
     extension.on("domain", function(id) {
@@ -261,7 +262,6 @@ COMMAND> npm run dist
 다음과 같이 두가지 형태로 빌드하여 배포할 수 있다.
 
 ### 제니퍼에 실험실로 로드되는 jar 파일로 배포하기
-
 메이븐 프로젝트의 jennifer 프로파일을 선택해서 인스톨하면, dist 디렉토리에 **프로젝트명_jennifer-버전.jar** 파일이 생성된다. 해당 jar 파일은 제니퍼5 어댑터 및 실험실 관리화면을 통해 추가할 수 있다.
 
 ### 독립적으로 실행되는 jar 파일로 빌드하기
@@ -282,6 +282,7 @@ COMMAND> java -jar -Dtheme=dark,language=en 프로젝트명_local-버전.jar
 
 #### 2. 사용자정의 대시보드
 추가된 플러그인 페이지는 사용자정의 대시보드의 컴포넌트로 사용할 수 있는데, 앞에서 설명한 Iframe 모드로 플러그인을 추가한다.
+
 ![이미지](https://raw.githubusercontent.com/jennifersoft/jennifer-extension-manuals/master/res/img/view_server_plugin_v3/2.png)
 ![이미지](https://raw.githubusercontent.com/jennifersoft/jennifer-extension-manuals/master/res/img/view_server_plugin_v3/3.png)
 
@@ -291,6 +292,7 @@ COMMAND> java -jar -Dtheme=dark,language=en 프로젝트명_local-버전.jar
 
 #### 4. 제니퍼 화면에 추가하기
 **aries.menu.type** 옵션을 사용하면 제니퍼 실험실 외에도 대시보드, 리얼타임, 분석, 통계, 관리 화면에 플러그인을 추가할 수 있다. 참고로 메뉴 타입이 대시보드와 리얼타임일 때는 화면에 스크롤이 생기지 않으며 컨텐츠 영역의 크기가 가로/세로 100%라고 가정하고 개발해야 한다.
+
 ![이미지](https://raw.githubusercontent.com/jennifersoft/jennifer-extension-manuals/master/res/img/view_server_plugin_v3/4.png "대시보드/리얼타임")
 ![이미지](https://raw.githubusercontent.com/jennifersoft/jennifer-extension-manuals/master/res/img/view_server_plugin_v3/5.png "분석/통계")
 ![이미지](https://raw.githubusercontent.com/jennifersoft/jennifer-extension-manuals/master/res/img/view_server_plugin_v3/6.png "관리")
@@ -303,10 +305,12 @@ COMMAND> java -jar -Dtheme=dark,language=en 프로젝트명_local-버전.jar
 
 ### 서버
 사실 더 많은 라이브러리를 제니퍼 서버에서 사용하지만 메이븐 빌드시 중첩되는 라이브러리는 모두 제거해준다. 그래서 본 프로젝트에서 배포하는 [pom.xml](https://github.com/jennifersoft/jennifer-view-plugin-tutorial/blob/master/pom.xml) 파일을 잘 기억해두자.
+
 > Jetty9, Spring4, Logback
 
 ### 클라이언트
 Iframe 모드를 사용하거나 제니퍼 화면에 추가할 때는 아무것도 로드하지 않는다.
+
 > jquery.js, jui-ui.css, jui-grid.css
 
 
