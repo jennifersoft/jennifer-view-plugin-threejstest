@@ -101,7 +101,7 @@ aries.output.css = app.css
 | aries.version | 플러그인이 로드될 제니퍼 서버의 최소 버전 (5.4.0 이상을 입력해야 함) | X |
 | aries.main.url | 플러그인 메인 URL (제니퍼 서버 URL/mailUrl) | O |
 | aries.main.tpl | 플러그인 메인 URL에 매핑되는 템플릿 파일 경로 | X |
-| aries.menu.type | 플러그인 메뉴 타입 (labs, dashboard, realtime, analysis, statistics, management | X |
+| aries.menu.type | 플러그인 메뉴 타입 (labs, dashboard, realtime, analysis, statistics, management) | X |
 | aries.directory.i18n | 다국어 properties 파일 (message_국가코드.properties 형태로 이름을 정해야 함) | X |
 | aries.directory.thumbnail | 제니퍼 실험실 목록에 보이는 썸네일 이미지 경로 (제니퍼 테마명과 동일 classic 또는 dark) | X |
 | aries.output.js | 메인 템플릿에 인젝션되는 스크립트 파일 목록 | X |
