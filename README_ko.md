@@ -69,7 +69,7 @@ public class PluginTutorialApplication extends WebMvcConfigurerAdapter {
 	}
 
 	public static void main(String[] args) {
-		SpringApplication.run(TutorialApplication.class, args);
+		SpringApplication.run(PluginTutorialApplication.class, args);
 	}
 }
 ```

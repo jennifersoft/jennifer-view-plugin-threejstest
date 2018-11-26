@@ -4,7 +4,7 @@ JENNIFER View Server plug-in is an extension that developers can implement in an
 
 ### Version Requirements
 
-This document is based on Jennifer Server version 5.4.0.
+This document is based on Jennifer Server version 5.4.1.
 
 
 ## Configuring the plug-in development environment in IntelliJ
@@ -47,7 +47,7 @@ The following snippet is the dependency setup part for loading the required libr
 	<dependency>
 		<groupId>com.aries</groupId>
 		<artifactId>extension</artifactId>
-		<version>1.1.0</version>
+		<version>1.2.1</version>
 	</dependency>
 </dependencies>
 ```
@@ -57,7 +57,7 @@ The following snippet is the dependency setup part for loading the required libr
 ### Modifying the main class
 
 
-To add the Spring interceptor provided by the JENNIFER extension library, you need to implement the WebMvcConfigurer interface in the main class as follows:
+To add the Spring interceptor provided by the JENNIFER extension library, you need to implement the `WebMvcConfigurer` interface in the main class as follows:
 
 ```java
 package com.aries.tutorial
@@ -69,7 +69,7 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 @SpringBootApplication
-public class TutorialApplication extends WebMvcConfigurerAdapter {
+public class PluginTutorialApplication extends WebMvcConfigurerAdapter {
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
 		// Add PluginStarter class as spring primary interceptor
@@ -77,7 +77,7 @@ public class TutorialApplication extends WebMvcConfigurerAdapter {
 	}
 
 	public static void main(String[] args) {
-		SpringApplication.run(TutorialApplication.class, args);
+		SpringApplication.run(PluginTutorialApplication.class, args);
 	}
 }
 ```
@@ -90,9 +90,10 @@ JENNIFER server refers to [application.properties](https://github.com/jenniferso
 ```
 aries.title = Plugin Tutorial
 aries.description = JENNIFER Plug-in development tutorial page
-aries.version = 5.4.0
+aries.version = 5.4.1
 aries.main.url = /plugin/tutorial
 aries.main.tpl = templates/index.vm
+aries.menu.type = labs
 aries.directory.i18n = i18n
 aries.directory.thumbnail = thumbnails
 aries.output.js = runtime.js, vendors.js, app.js
@@ -106,7 +107,8 @@ Below are the properties description. Note that if there is no main template, JE
 | aries.title | Name of the plugin, shown in JENNIFER screen | X |
 | aries.description | Description of the plugin, shown in JENNIFER screen | X |
 | aries.version | Minimum version of the Jennifer Server to which the plugin will be loaded (5.4.0 or higher is required) | X |
-| aries.main.url | Plugin Main UR (JENNIFER Server URL/mailUrl) | O |
+| aries.main.url | Plugin Main URL (JENNIFER Server URL/mailUrl) | O |
+| aries.menu.type | Plugin menu type. Value can be (labs, dashboard, realtime, analysis, statistics, management) | X |
 | aries.main.tpl | Template file path mapped to the plugin main URL | X |
 | aries.directory.i18n | Multilingual properties file (must be named message_ country code.properties) | X |
 | aries.directory.thumbnail | Thumbnail image path shown in Jennifer's lab list (file name must be same as Jennifer theme name `classic` or `dark`)	 | X |
@@ -169,7 +171,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-public class TutorialController extends PluginController {
+public class PluginTutorialController extends PluginController {
 
     @RequestMapping(value = { "/tutorial" }, method = RequestMethod.GET)
     @ResponseBody
@@ -191,16 +193,17 @@ public class TutorialController extends PluginController {
 }
 ```
 
-By default, the controller's view refers to aries.main.tpl set in application.properties. You can set the desired template according to the situation with the constructor variable of ModelAndView class.
+By default, the controller's view refers to `aries.main.tpl` set in `application.properties`. You can set the desired template according to the situation with the constructor variable of ModelAndView class.
 
 
 ### Using the plug-in JavaScript API
 
 The JavaScript API makes it easy to query the Open API and shows X-View transaction analysis and active services list pop-ups. 
 
-> Currently only X-View and active services pop-up are avaiable. We will add more pop-up in the feature that will support the real-time charts.
-
 ```javascript
+import $ from 'jquery';
+import extension from 'aries-extension-js';
+
 $(function() {
     // TODO: Set Jennifer Server Address and the API token here.
     aries.extension.setup({
@@ -209,7 +212,7 @@ $(function() {
     });
 
     $("#xview_popup").on("click", function(e) {
-        // TODO: Directly shows X-View pop for the specified transactions (txIds)
+        // Directly shows X-View pop for the specified transactions (txIds)
         aries.extension.popup("xview", {
             domainId: 7908,
             txIds: [ "-6371365836736069843", "6541742202344215657", "-3416726780880622050" ],
@@ -219,13 +222,13 @@ $(function() {
     });
 
     $("#active_popup").on("click", function(e) {
-        // TODO: Open Active Services Pop-up list
+        //Open Active Services Pop-up list
         aries.extension.popup("activeService", {
             domainId: 7908
         });
     });
     
-    // TODO: Query the Open API example
+    //Query the Open API example
     aries.extension.api("instance", {
         domain_id: 7908
     }, function(res) {
@@ -233,10 +236,47 @@ $(function() {
     });
 });
 ```
+#### Handling events when selecting a domain box
+
+JENNIFER screens has a common component called a domain box. When selecting a domain, you can refer to the ID value of the selected domain through the following method.
+
+```javascript
+//Message from Jennifer (domain data) 
+extension.on('domain', function(id) {
+    extension.api('instance', { domain_id: id }, function(res){
+        console.log('JENNIFER API', res);
+    });
+});
+
+//Custom event generation 
+extension.emit('domain', 7900);
+
+```
+
+### Building a plug-in client
+
+Resources such as JavaScript code and images needed for client development should be placed in the `src/main/client` directory, and you should move the final bundled files to the `src/main/resources/static` directory before deploying the plugin project. The package.json file defines NPM commands that you can use when developing and deploying.
+
+**Install the requied dependencies**
+```bash
+npm install
+```
+
+**To lunch the client development server (see the webpack.conf.js file)**
+```bash
+npm start
+```
+
+**To command for creating final bundled files**
+```bash
+npm run dist
+```
+
+
 
 ## Deploying a plug-in project
 
-You can build and deploy in two forms.
+You can build and deploy in two forms as follow.
 
 ### JAR file to be loaded in JENNIFER view server Labs.
 
@@ -268,14 +308,29 @@ A plug-in can be used as a component in the user-defined dashboard, adding the p
 Page-type plug-ins can only be accessed with login authentication. However, it is possible to access the plug-in page without having to go through login authentication through the shared URL.
 ![이미지](https://raw.githubusercontent.com/jennifersoft/jennifer-extension-manuals/master/res/img/view_server_plugin_v3/1.png)
 
+### 4. Add to JENNIFER Screen
+
+The aries.menu.type option allows you to add plug-ins to dashboards, real-time, analytics, statistics, and administration screens in addition to the JENNIFER Labs. Note that when the menu type is dashboard and real time, there is no scrolling on the screen, and it should be developed assuming that the content area size is 100% width / height.
+
+![Image](https://raw.githubusercontent.com/jennifersoft/jennifer-extension-manuals/master/res/img/view_server_plugin_v3/4.png "Dashboard/Real-Time")
+    
+![Image](https://raw.githubusercontent.com/jennifersoft/jennifer-extension-manuals/master/res/img/view_server_plugin_v3/5.png "Analysis/Statisitcs")
+    
+![Image](https://raw.githubusercontent.com/jennifersoft/jennifer-extension-manuals/master/res/img/view_server_plugin_v3/6.png "Management")
+
+> Plug-in menu types have the following limitations, so please refer to them when developing.
+> 1. Sharing URL functionality is disabled.
+> 2. It only operates in Iframe mode.
+
+
 ## Used Libraries
 
 ### Server
 
 In fact, more libraries are used on the Jennifer server, but the Maven builds remove all the overlapped libraries. So, check the [pom.xml](https://github.com/jennifersoft/jennifer-view-plugin-tutorial/blob/master/pom.xml)  file distributed by this project for more details.
 
-> Jetty-9.2.24, Spring-4.3.8, logback-1.0.13
+> Jetty9, Spring4, Logback
 
 ### Client
 When a plug-in runs on a Jennifer server, some functions, such as an administration screen, must be run, so a library with a global dependency is inevitably required.
-> jquery-2.0.2, moment-2.8.4, lodash-1.3.1, jui-2.0.4
+> jquery.js, jui-ui.css, jui-grid.css
