@@ -5,7 +5,7 @@ import com.aries.extension.util.ConfigUtil;
 import com.aries.extension.util.LogUtil;
 import com.aries.extension.util.PropertyUtil;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -17,7 +17,7 @@ public class PluginTutorialController extends PluginController {
 
     @RequestMapping(value = { "/tutorial" }, method = RequestMethod.GET)
     @ResponseBody
-    public ModelAndView getMainPage(Model model, @RequestParam(required=false, defaultValue="") String layout) {
+    public ModelAndView getMainPage(ModelMap modelMap, @RequestParam(required=false, defaultValue="") String layout) {
         // TODO: layout 매개변수에 따라 다른 템플릿을 적용한다.
         // Apply a different template according to the layout parameter.
         ModelAndView mav = new ModelAndView(layout.equals("iframe") ? "templates/iframe.vm" : "templates/main.vm");
@@ -33,6 +33,9 @@ public class PluginTutorialController extends PluginController {
         // TODO: 플러그인의 로그를 남기는 유틸리티 클래스를 제공한다.
         // Utility class used for loggin
         LogUtil.info(property + ", " + config);
+
+        // TODO: 템플릿에서 사용할 데이터를 넘길 수 있다.
+        modelMap.put("copyright", "Copyright © 2019 JenniferSoft Inc. All rights reserved.");
 
         return mav;
     }

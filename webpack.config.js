@@ -1,11 +1,11 @@
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
-const MiniCssExtractPlugin = require("mini-css-extract-plugin")
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const TerserPlugin = require('terser-webpack-plugin');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
 module.exports = (env) => {
-    let path = require('path')
-    let clientPath = path.resolve(__dirname, 'src/main/client')
-    let outputPath = path.resolve(__dirname, (env == 'production') ? 'src/main/resources/static' : 'out')
+    let path = require('path');
+    let clientPath = path.resolve(__dirname, 'src/main/client');
+    let outputPath = path.resolve(__dirname, (env == 'production') ? 'src/main/resources/static' : 'out');
 
     return {
         mode: env,
@@ -29,7 +29,10 @@ module.exports = (env) => {
                     }
                 }
             },
-            minimizer: (env == 'production') ? [ new UglifyJsPlugin() ] : []
+            minimizer: [
+                new TerserPlugin(),
+                new OptimizeCssAssetsPlugin()
+            ]
         },
         module: {
             rules: [{
@@ -72,8 +75,6 @@ module.exports = (env) => {
                 path: outputPath,
                 filename: '[name].css'
             })
-        ].concat(env == 'production' ? [
-            new BundleAnalyzerPlugin()
-        ] : [])
+        ]
     }
 }

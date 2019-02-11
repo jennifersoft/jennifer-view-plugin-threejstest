@@ -31,3 +31,8 @@
     left: 250px;
     top: 0px;
 }
+
+#tutorial-main .copyright {
+    margin: 7px 0px;
+    color: #a9a9a9;
+}
